@@ -14,7 +14,7 @@ from .publication import Publication
 from .epicollection import Epicollection
 
 __all__ = [
-    "EntityRetrieveResponse",
+    "Entity",
     "EntitiesDonor",
     "EntitiesSample",
     "DatasetsDataset",
@@ -74,7 +74,7 @@ class EntitiesEpicollection(Epicollection):
     """the type of entity"""
 
 
-EntityRetrieveResponse: TypeAlias = Union[
+Entity: TypeAlias = Union[
     EntitiesDonor,
     EntitiesSample,
     DatasetsDataset,

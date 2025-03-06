@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .file import File as File
 from .donor import Donor as Donor
+from .entity import Entity as Entity
 from .person import Person as Person
 from .sample import Sample as Sample
 from .upload import Upload as Upload
@@ -27,7 +28,6 @@ from .dataset_retract_params import DatasetRetractParams as DatasetRetractParams
 from .entity_create_response import EntityCreateResponse as EntityCreateResponse
 from .entity_update_response import EntityUpdateResponse as EntityUpdateResponse
 from .child_retrieve_response import ChildRetrieveResponse as ChildRetrieveResponse
-from .entity_retrieve_response import EntityRetrieveResponse as EntityRetrieveResponse
 from .parent_retrieve_response import ParentRetrieveResponse as ParentRetrieveResponse
 from .upload_update_bulk_params import UploadUpdateBulkParams as UploadUpdateBulkParams
 from .ancestor_retrieve_response import AncestorRetrieveResponse as AncestorRetrieveResponse
