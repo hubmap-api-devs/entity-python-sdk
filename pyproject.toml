@@ -1,6 +1,6 @@
 [project]
 name = "entity_python_sdk"
-version = "0.0.1-alpha.0"
+version = "2.0.0"
 description = "The official Python library for the entity-python-sdk API"
 dynamic = ["readme"]
 license = "MIT"
