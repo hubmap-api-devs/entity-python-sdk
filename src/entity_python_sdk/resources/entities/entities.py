@@ -37,12 +37,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.entity import Entity
 from ...types.file_param import FileParam
 from ...types.instanceof import Instanceof
 from ...types.person_param import PersonParam
 from ...types.entity_create_response import EntityCreateResponse
 from ...types.entity_update_response import EntityUpdateResponse
-from ...types.entity_retrieve_response import EntityRetrieveResponse
 from ...types.entity_list_tuplets_response import EntityListTupletsResponse
 from ...types.entity_list_uploads_response import EntityListUploadsResponse
 from ...types.entity_list_siblings_response import EntityListSiblingsResponse
@@ -739,7 +739,7 @@ class EntitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityRetrieveResponse:
+    ) -> Entity:
         """Retrieve a provenance entity by id.
 
         Entity types of Donor, Sample and Datasets.
@@ -756,15 +756,13 @@ class EntitiesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            EntityRetrieveResponse,
+            Entity,
             self._get(
                 f"/entities/{id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
-                cast_to=cast(
-                    Any, EntityRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(Any, Entity),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
@@ -2446,7 +2444,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityRetrieveResponse:
+    ) -> Entity:
         """Retrieve a provenance entity by id.
 
         Entity types of Donor, Sample and Datasets.
@@ -2463,15 +2461,13 @@ class AsyncEntitiesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            EntityRetrieveResponse,
+            Entity,
             await self._get(
                 f"/entities/{id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
-                cast_to=cast(
-                    Any, EntityRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(Any, Entity),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 

@@ -7,13 +7,13 @@ from entity_python_sdk.types import (
     Collection,
     Donor,
     DonorMetadata,
+    Entity,
     Epicollection,
     Instanceof,
     Publication,
     Sample,
     Upload,
     EntityCreateResponse,
-    EntityRetrieveResponse,
     EntityUpdateResponse,
     EntityCreateMultipleSamplesResponse,
     EntityGetGlobusURLResponse,
@@ -29,7 +29,7 @@ from entity_python_sdk.types import (
 Methods:
 
 - <code title="post /entities/new/{entity_type}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">create</a>(entity_type, \*\*<a href="src/entity_python_sdk/types/entity_create_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_create_response.py">EntityCreateResponse</a></code>
-- <code title="get /entities/{id}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">retrieve</a>(id) -> <a href="./src/entity_python_sdk/types/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
+- <code title="get /entities/{id}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">retrieve</a>(id) -> <a href="./src/entity_python_sdk/types/entity.py">Entity</a></code>
 - <code title="put /entities/{id}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">update</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_update_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_update_response.py">EntityUpdateResponse</a></code>
 - <code title="post /entities/multiple-samples/{count}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">create_multiple_samples</a>(count) -> <a href="./src/entity_python_sdk/types/entity_create_multiple_samples_response.py">EntityCreateMultipleSamplesResponse</a></code>
 - <code title="get /entities/{id}/globus-url">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">get_globus_url</a>(id) -> str</code>
