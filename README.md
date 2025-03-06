@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.entity-python-sdk.com](https://
 
 ```sh
 # install from PyPI
-pip install --pre entity_python_sdk
+pip install entity_python_sdk
 ```
 
 ## Usage
