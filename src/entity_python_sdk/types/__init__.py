@@ -12,10 +12,12 @@ from .collection import Collection as Collection
 from .file_param import FileParam as FileParam
 from .instanceof import Instanceof as Instanceof
 from .donor_param import DonorParam as DonorParam
+from .publication import Publication as Publication
 from .person_param import PersonParam as PersonParam
 from .sample_param import SampleParam as SampleParam
 from .upload_param import UploadParam as UploadParam
 from .dataset_param import DatasetParam as DatasetParam
+from .epicollection import Epicollection as Epicollection
 from .donor_metadata import DonorMetadata as DonorMetadata
 from .collection_param import CollectionParam as CollectionParam
 from .donor_metadata_param import DonorMetadataParam as DonorMetadataParam
