@@ -1,6 +1,6 @@
 [project]
 name = "entity_python_sdk"
-version = "0.0.1-alpha.0"
+version = "2.0.0"
 description = "The official Python library for the entity-python-sdk API"
 dynamic = ["readme"]
 license = "MIT"
@@ -34,8 +34,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/entity-python-sdk-python"
-Repository = "https://github.com/stainless-sdks/entity-python-sdk-python"
+Homepage = "https://github.com/hubmapconsortium/entity-python-sdk"
+Repository = "https://github.com/hubmapconsortium/entity-python-sdk"
 
 
 
@@ -122,7 +122,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/entity-python-sdk-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/hubmapconsortium/entity-python-sdk/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
