@@ -47,6 +47,7 @@ from ...types.entity_list_tuplets_response import EntityListTupletsResponse
 from ...types.entity_list_uploads_response import EntityListUploadsResponse
 from ...types.entity_list_siblings_response import EntityListSiblingsResponse
 from ...types.entity_list_collections_response import EntityListCollectionsResponse
+from ...types.entity_list_entity_types_response import EntityListEntityTypesResponse
 from ...types.entity_list_ancestor_organs_response import EntityListAncestorOrgansResponse
 from ...types.entity_create_multiple_samples_response import EntityCreateMultipleSamplesResponse
 
@@ -1541,6 +1542,25 @@ class EntitiesResource(SyncAPIResource):
                 ),
             ),
             cast_to=EntityListCollectionsResponse,
+        )
+
+    def list_entity_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EntityListEntityTypesResponse:
+        """Get a list of all the available entity types defined in the schema yaml"""
+        return self._get(
+            "/entity-types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EntityListEntityTypesResponse,
         )
 
     def list_siblings(
@@ -3231,6 +3251,25 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityListCollectionsResponse,
         )
 
+    async def list_entity_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EntityListEntityTypesResponse:
+        """Get a list of all the available entity types defined in the schema yaml"""
+        return await self._get(
+            "/entity-types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EntityListEntityTypesResponse,
+        )
+
     async def list_siblings(
         self,
         id: str,
@@ -3459,6 +3498,9 @@ class EntitiesResourceWithRawResponse:
         self.list_collections = to_raw_response_wrapper(
             entities.list_collections,
         )
+        self.list_entity_types = to_raw_response_wrapper(
+            entities.list_entity_types,
+        )
         self.list_siblings = to_raw_response_wrapper(
             entities.list_siblings,
         )
@@ -3504,6 +3546,9 @@ class AsyncEntitiesResourceWithRawResponse:
         )
         self.list_collections = async_to_raw_response_wrapper(
             entities.list_collections,
+        )
+        self.list_entity_types = async_to_raw_response_wrapper(
+            entities.list_entity_types,
         )
         self.list_siblings = async_to_raw_response_wrapper(
             entities.list_siblings,
@@ -3551,6 +3596,9 @@ class EntitiesResourceWithStreamingResponse:
         self.list_collections = to_streamed_response_wrapper(
             entities.list_collections,
         )
+        self.list_entity_types = to_streamed_response_wrapper(
+            entities.list_entity_types,
+        )
         self.list_siblings = to_streamed_response_wrapper(
             entities.list_siblings,
         )
@@ -3596,6 +3644,9 @@ class AsyncEntitiesResourceWithStreamingResponse:
         )
         self.list_collections = async_to_streamed_response_wrapper(
             entities.list_collections,
+        )
+        self.list_entity_types = async_to_streamed_response_wrapper(
+            entities.list_entity_types,
         )
         self.list_siblings = async_to_streamed_response_wrapper(
             entities.list_siblings,

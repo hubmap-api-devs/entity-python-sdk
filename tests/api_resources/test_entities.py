@@ -18,6 +18,7 @@ from entity_python_sdk.types import (
     EntityListUploadsResponse,
     EntityListSiblingsResponse,
     EntityListCollectionsResponse,
+    EntityListEntityTypesResponse,
     EntityListAncestorOrgansResponse,
     EntityCreateMultipleSamplesResponse,
 )
@@ -1009,6 +1010,34 @@ class TestEntities:
             client.entities.with_raw_response.list_collections(
                 id="",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_entity_types(self, client: EntityPythonSDK) -> None:
+        entity = client.entities.list_entity_types()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list_entity_types(self, client: EntityPythonSDK) -> None:
+        response = client.entities.with_raw_response.list_entity_types()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = response.parse()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list_entity_types(self, client: EntityPythonSDK) -> None:
+        with client.entities.with_streaming_response.list_entity_types() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = response.parse()
+            assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -2193,6 +2222,34 @@ class TestAsyncEntities:
             await async_client.entities.with_raw_response.list_collections(
                 id="",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        entity = await async_client.entities.list_entity_types()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.entities.with_raw_response.list_entity_types()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = await response.parse()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.entities.with_streaming_response.list_entity_types() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = await response.parse()
+            assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize

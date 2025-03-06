@@ -64,14 +64,6 @@ from .descendants import (
     DescendantsResourceWithStreamingResponse,
     AsyncDescendantsResourceWithStreamingResponse,
 )
-from .entity_types import (
-    EntityTypesResource,
-    AsyncEntityTypesResource,
-    EntityTypesResourceWithRawResponse,
-    AsyncEntityTypesResourceWithRawResponse,
-    EntityTypesResourceWithStreamingResponse,
-    AsyncEntityTypesResourceWithStreamingResponse,
-)
 
 __all__ = [
     "EntitiesResource",
@@ -80,12 +72,6 @@ __all__ = [
     "AsyncEntitiesResourceWithRawResponse",
     "EntitiesResourceWithStreamingResponse",
     "AsyncEntitiesResourceWithStreamingResponse",
-    "EntityTypesResource",
-    "AsyncEntityTypesResource",
-    "EntityTypesResourceWithRawResponse",
-    "AsyncEntityTypesResourceWithRawResponse",
-    "EntityTypesResourceWithStreamingResponse",
-    "AsyncEntityTypesResourceWithStreamingResponse",
     "AncestorsResource",
     "AsyncAncestorsResource",
     "AncestorsResourceWithRawResponse",
