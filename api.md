@@ -17,6 +17,7 @@ from entity_python_sdk.types import (
     EntityGetGlobusURLResponse,
     EntityListAncestorOrgansResponse,
     EntityListCollectionsResponse,
+    EntityListEntityTypesResponse,
     EntityListSiblingsResponse,
     EntityListTupletsResponse,
     EntityListUploadsResponse,
@@ -33,6 +34,7 @@ Methods:
 - <code title="get /entities/{id}/instanceof/{type}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">is_instance_of</a>(type, \*, id) -> <a href="./src/entity_python_sdk/types/instanceof.py">Instanceof</a></code>
 - <code title="get /entities/{id}/ancestor-organs">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_ancestor_organs</a>(id) -> <a href="./src/entity_python_sdk/types/entity_list_ancestor_organs_response.py">EntityListAncestorOrgansResponse</a></code>
 - <code title="get /entities/{id}/collections">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_collections</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_collections_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_collections_response.py">EntityListCollectionsResponse</a></code>
+- <code title="get /entity-types">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_entity_types</a>() -> <a href="./src/entity_python_sdk/types/entity_list_entity_types_response.py">EntityListEntityTypesResponse</a></code>
 - <code title="get /entities/{id}/siblings">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_siblings</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_siblings_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_siblings_response.py">EntityListSiblingsResponse</a></code>
 - <code title="get /entities/{id}/tuplets">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_tuplets</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_tuplets_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_tuplets_response.py">EntityListTupletsResponse</a></code>
 - <code title="get /entities/{id}/uploads">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_uploads</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_uploads_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_uploads_response.py">EntityListUploadsResponse</a></code>
@@ -43,18 +45,6 @@ Methods:
 Methods:
 
 - <code title="get /entities/type/{type_a}/instanceof/{type_b}">client.entities.type.<a href="./src/entity_python_sdk/resources/entities/type.py">is_instance_of</a>(type_b, \*, type_a) -> <a href="./src/entity_python_sdk/types/instanceof.py">Instanceof</a></code>
-
-# EntityTypes
-
-Types:
-
-```python
-from entity_python_sdk.types import EntityTypeListResponse
-```
-
-Methods:
-
-- <code title="get /entity-types">client.entity_types.<a href="./src/entity_python_sdk/resources/entity_types.py">list</a>() -> <a href="./src/entity_python_sdk/types/entity_type_list_response.py">EntityTypeListResponse</a></code>
 
 # Ancestors
 

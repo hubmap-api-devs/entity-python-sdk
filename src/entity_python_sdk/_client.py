@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import doi, samples, uploads, children, ancestors, descendants, entity_types
+from .resources import doi, samples, uploads, children, ancestors, descendants
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -49,7 +49,6 @@ __all__ = [
 
 class EntityPythonSDK(SyncAPIClient):
     entities: entities.EntitiesResource
-    entity_types: entity_types.EntityTypesResource
     ancestors: ancestors.AncestorsResource
     descendants: descendants.DescendantsResource
     children: children.ChildrenResource
@@ -111,7 +110,6 @@ class EntityPythonSDK(SyncAPIClient):
         )
 
         self.entities = entities.EntitiesResource(self)
-        self.entity_types = entity_types.EntityTypesResource(self)
         self.ancestors = ancestors.AncestorsResource(self)
         self.descendants = descendants.DescendantsResource(self)
         self.children = children.ChildrenResource(self)
@@ -231,7 +229,6 @@ class EntityPythonSDK(SyncAPIClient):
 
 class AsyncEntityPythonSDK(AsyncAPIClient):
     entities: entities.AsyncEntitiesResource
-    entity_types: entity_types.AsyncEntityTypesResource
     ancestors: ancestors.AsyncAncestorsResource
     descendants: descendants.AsyncDescendantsResource
     children: children.AsyncChildrenResource
@@ -293,7 +290,6 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
         )
 
         self.entities = entities.AsyncEntitiesResource(self)
-        self.entity_types = entity_types.AsyncEntityTypesResource(self)
         self.ancestors = ancestors.AsyncAncestorsResource(self)
         self.descendants = descendants.AsyncDescendantsResource(self)
         self.children = children.AsyncChildrenResource(self)
@@ -414,7 +410,6 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
 class EntityPythonSDKWithRawResponse:
     def __init__(self, client: EntityPythonSDK) -> None:
         self.entities = entities.EntitiesResourceWithRawResponse(client.entities)
-        self.entity_types = entity_types.EntityTypesResourceWithRawResponse(client.entity_types)
         self.ancestors = ancestors.AncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithRawResponse(client.descendants)
         self.children = children.ChildrenResourceWithRawResponse(client.children)
@@ -427,7 +422,6 @@ class EntityPythonSDKWithRawResponse:
 class AsyncEntityPythonSDKWithRawResponse:
     def __init__(self, client: AsyncEntityPythonSDK) -> None:
         self.entities = entities.AsyncEntitiesResourceWithRawResponse(client.entities)
-        self.entity_types = entity_types.AsyncEntityTypesResourceWithRawResponse(client.entity_types)
         self.ancestors = ancestors.AsyncAncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithRawResponse(client.descendants)
         self.children = children.AsyncChildrenResourceWithRawResponse(client.children)
@@ -440,7 +434,6 @@ class AsyncEntityPythonSDKWithRawResponse:
 class EntityPythonSDKWithStreamedResponse:
     def __init__(self, client: EntityPythonSDK) -> None:
         self.entities = entities.EntitiesResourceWithStreamingResponse(client.entities)
-        self.entity_types = entity_types.EntityTypesResourceWithStreamingResponse(client.entity_types)
         self.ancestors = ancestors.AncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithStreamingResponse(client.descendants)
         self.children = children.ChildrenResourceWithStreamingResponse(client.children)
@@ -453,7 +446,6 @@ class EntityPythonSDKWithStreamedResponse:
 class AsyncEntityPythonSDKWithStreamedResponse:
     def __init__(self, client: AsyncEntityPythonSDK) -> None:
         self.entities = entities.AsyncEntitiesResourceWithStreamingResponse(client.entities)
-        self.entity_types = entity_types.AsyncEntityTypesResourceWithStreamingResponse(client.entity_types)
         self.ancestors = ancestors.AsyncAncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithStreamingResponse(client.descendants)
         self.children = children.AsyncChildrenResourceWithStreamingResponse(client.children)
