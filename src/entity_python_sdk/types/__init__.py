@@ -26,6 +26,7 @@ from .entity_create_response import EntityCreateResponse as EntityCreateResponse
 from .entity_update_response import EntityUpdateResponse as EntityUpdateResponse
 from .child_retrieve_response import ChildRetrieveResponse as ChildRetrieveResponse
 from .entity_retrieve_response import EntityRetrieveResponse as EntityRetrieveResponse
+from .parent_retrieve_response import ParentRetrieveResponse as ParentRetrieveResponse
 from .upload_update_bulk_params import UploadUpdateBulkParams as UploadUpdateBulkParams
 from .ancestor_retrieve_response import AncestorRetrieveResponse as AncestorRetrieveResponse
 from .dataset_bulk_update_params import DatasetBulkUpdateParams as DatasetBulkUpdateParams

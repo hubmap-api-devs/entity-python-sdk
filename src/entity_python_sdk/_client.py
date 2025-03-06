@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import doi, samples, uploads, children, ancestors, descendants
+from .resources import doi, parents, samples, uploads, children, ancestors, descendants
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -52,6 +52,7 @@ class EntityPythonSDK(SyncAPIClient):
     ancestors: ancestors.AncestorsResource
     descendants: descendants.DescendantsResource
     children: children.ChildrenResource
+    parents: parents.ParentsResource
     doi: doi.DoiResource
     datasets: datasets.DatasetsResource
     uploads: uploads.UploadsResource
@@ -113,6 +114,7 @@ class EntityPythonSDK(SyncAPIClient):
         self.ancestors = ancestors.AncestorsResource(self)
         self.descendants = descendants.DescendantsResource(self)
         self.children = children.ChildrenResource(self)
+        self.parents = parents.ParentsResource(self)
         self.doi = doi.DoiResource(self)
         self.datasets = datasets.DatasetsResource(self)
         self.uploads = uploads.UploadsResource(self)
@@ -232,6 +234,7 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
     ancestors: ancestors.AsyncAncestorsResource
     descendants: descendants.AsyncDescendantsResource
     children: children.AsyncChildrenResource
+    parents: parents.AsyncParentsResource
     doi: doi.AsyncDoiResource
     datasets: datasets.AsyncDatasetsResource
     uploads: uploads.AsyncUploadsResource
@@ -293,6 +296,7 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
         self.ancestors = ancestors.AsyncAncestorsResource(self)
         self.descendants = descendants.AsyncDescendantsResource(self)
         self.children = children.AsyncChildrenResource(self)
+        self.parents = parents.AsyncParentsResource(self)
         self.doi = doi.AsyncDoiResource(self)
         self.datasets = datasets.AsyncDatasetsResource(self)
         self.uploads = uploads.AsyncUploadsResource(self)
@@ -413,6 +417,7 @@ class EntityPythonSDKWithRawResponse:
         self.ancestors = ancestors.AncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithRawResponse(client.descendants)
         self.children = children.ChildrenResourceWithRawResponse(client.children)
+        self.parents = parents.ParentsResourceWithRawResponse(client.parents)
         self.doi = doi.DoiResourceWithRawResponse(client.doi)
         self.datasets = datasets.DatasetsResourceWithRawResponse(client.datasets)
         self.uploads = uploads.UploadsResourceWithRawResponse(client.uploads)
@@ -425,6 +430,7 @@ class AsyncEntityPythonSDKWithRawResponse:
         self.ancestors = ancestors.AsyncAncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithRawResponse(client.descendants)
         self.children = children.AsyncChildrenResourceWithRawResponse(client.children)
+        self.parents = parents.AsyncParentsResourceWithRawResponse(client.parents)
         self.doi = doi.AsyncDoiResourceWithRawResponse(client.doi)
         self.datasets = datasets.AsyncDatasetsResourceWithRawResponse(client.datasets)
         self.uploads = uploads.AsyncUploadsResourceWithRawResponse(client.uploads)
@@ -437,6 +443,7 @@ class EntityPythonSDKWithStreamedResponse:
         self.ancestors = ancestors.AncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithStreamingResponse(client.descendants)
         self.children = children.ChildrenResourceWithStreamingResponse(client.children)
+        self.parents = parents.ParentsResourceWithStreamingResponse(client.parents)
         self.doi = doi.DoiResourceWithStreamingResponse(client.doi)
         self.datasets = datasets.DatasetsResourceWithStreamingResponse(client.datasets)
         self.uploads = uploads.UploadsResourceWithStreamingResponse(client.uploads)
@@ -449,6 +456,7 @@ class AsyncEntityPythonSDKWithStreamedResponse:
         self.ancestors = ancestors.AsyncAncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithStreamingResponse(client.descendants)
         self.children = children.AsyncChildrenResourceWithStreamingResponse(client.children)
+        self.parents = parents.AsyncParentsResourceWithStreamingResponse(client.parents)
         self.doi = doi.AsyncDoiResourceWithStreamingResponse(client.doi)
         self.datasets = datasets.AsyncDatasetsResourceWithStreamingResponse(client.datasets)
         self.uploads = uploads.AsyncUploadsResourceWithStreamingResponse(client.uploads)

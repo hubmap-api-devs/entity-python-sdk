@@ -8,6 +8,14 @@ from .doi import (
     DoiResourceWithStreamingResponse,
     AsyncDoiResourceWithStreamingResponse,
 )
+from .parents import (
+    ParentsResource,
+    AsyncParentsResource,
+    ParentsResourceWithRawResponse,
+    AsyncParentsResourceWithRawResponse,
+    ParentsResourceWithStreamingResponse,
+    AsyncParentsResourceWithStreamingResponse,
+)
 from .samples import (
     SamplesResource,
     AsyncSamplesResource,
@@ -90,6 +98,12 @@ __all__ = [
     "AsyncChildrenResourceWithRawResponse",
     "ChildrenResourceWithStreamingResponse",
     "AsyncChildrenResourceWithStreamingResponse",
+    "ParentsResource",
+    "AsyncParentsResource",
+    "ParentsResourceWithRawResponse",
+    "AsyncParentsResourceWithRawResponse",
+    "ParentsResourceWithStreamingResponse",
+    "AsyncParentsResourceWithStreamingResponse",
     "DoiResource",
     "AsyncDoiResource",
     "DoiResourceWithRawResponse",

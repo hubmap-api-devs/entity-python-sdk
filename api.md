@@ -82,6 +82,18 @@ Methods:
 
 - <code title="get /children/{id}">client.children.<a href="./src/entity_python_sdk/resources/children.py">retrieve</a>(id) -> <a href="./src/entity_python_sdk/types/child_retrieve_response.py">ChildRetrieveResponse</a></code>
 
+# Parents
+
+Types:
+
+```python
+from entity_python_sdk.types import ParentRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /parents/{id}">client.parents.<a href="./src/entity_python_sdk/resources/parents.py">retrieve</a>(id) -> <a href="./src/entity_python_sdk/types/parent_retrieve_response.py">ParentRetrieveResponse</a></code>
+
 # Doi
 
 Methods:
