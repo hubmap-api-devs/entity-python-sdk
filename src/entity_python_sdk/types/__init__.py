@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .file import File as File
 from .donor import Donor as Donor
+from .entity import Entity as Entity
 from .person import Person as Person
 from .sample import Sample as Sample
 from .upload import Upload as Upload
@@ -12,17 +13,20 @@ from .collection import Collection as Collection
 from .file_param import FileParam as FileParam
 from .instanceof import Instanceof as Instanceof
 from .donor_param import DonorParam as DonorParam
+from .publication import Publication as Publication
 from .person_param import PersonParam as PersonParam
 from .sample_param import SampleParam as SampleParam
 from .upload_param import UploadParam as UploadParam
 from .dataset_param import DatasetParam as DatasetParam
+from .epicollection import Epicollection as Epicollection
 from .donor_metadata import DonorMetadata as DonorMetadata
 from .collection_param import CollectionParam as CollectionParam
+from .publication_param import PublicationParam as PublicationParam
+from .epicollection_param import EpicollectionParam as EpicollectionParam
 from .donor_metadata_param import DonorMetadataParam as DonorMetadataParam
 from .entity_update_params import EntityUpdateParams as EntityUpdateParams
 from .dataset_retract_params import DatasetRetractParams as DatasetRetractParams
 from .child_retrieve_response import ChildRetrieveResponse as ChildRetrieveResponse
-from .entity_retrieve_response import EntityRetrieveResponse as EntityRetrieveResponse
 from .parent_retrieve_response import ParentRetrieveResponse as ParentRetrieveResponse
 from .upload_update_bulk_params import UploadUpdateBulkParams as UploadUpdateBulkParams
 from .ancestor_retrieve_response import AncestorRetrieveResponse as AncestorRetrieveResponse
@@ -32,25 +36,25 @@ from .entity_list_uploads_params import EntityListUploadsParams as EntityListUpl
 from .entity_list_siblings_params import EntityListSiblingsParams as EntityListSiblingsParams
 from .upload_update_bulk_response import UploadUpdateBulkResponse as UploadUpdateBulkResponse
 from .dataset_bulk_update_response import DatasetBulkUpdateResponse as DatasetBulkUpdateResponse
+from .dataset_list_donors_response import DatasetListDonorsResponse as DatasetListDonorsResponse
+from .dataset_list_organs_response import DatasetListOrgansResponse as DatasetListOrgansResponse
 from .descendant_retrieve_response import DescendantRetrieveResponse as DescendantRetrieveResponse
 from .entity_list_tuplets_response import EntityListTupletsResponse as EntityListTupletsResponse
 from .entity_list_uploads_response import EntityListUploadsResponse as EntityListUploadsResponse
+from .dataset_list_samples_response import DatasetListSamplesResponse as DatasetListSamplesResponse
 from .entity_list_siblings_response import EntityListSiblingsResponse as EntityListSiblingsResponse
+from .entity_get_globus_url_response import EntityGetGlobusURLResponse as EntityGetGlobusURLResponse
 from .entity_list_collections_params import EntityListCollectionsParams as EntityListCollectionsParams
 from .dataset_list_unpublished_params import DatasetListUnpublishedParams as DatasetListUnpublishedParams
 from .dataset_create_components_params import DatasetCreateComponentsParams as DatasetCreateComponentsParams
-from .dataset_retrieve_donors_response import DatasetRetrieveDonorsResponse as DatasetRetrieveDonorsResponse
-from .dataset_retrieve_organs_response import DatasetRetrieveOrgansResponse as DatasetRetrieveOrgansResponse
 from .entity_list_collections_response import EntityListCollectionsResponse as EntityListCollectionsResponse
 from .sample_retrieve_prov_info_params import SampleRetrieveProvInfoParams as SampleRetrieveProvInfoParams
 from .dataset_list_unpublished_response import DatasetListUnpublishedResponse as DatasetListUnpublishedResponse
 from .dataset_retrieve_revisions_params import DatasetRetrieveRevisionsParams as DatasetRetrieveRevisionsParams
-from .dataset_retrieve_samples_response import DatasetRetrieveSamplesResponse as DatasetRetrieveSamplesResponse
+from .entity_list_entity_types_response import EntityListEntityTypesResponse as EntityListEntityTypesResponse
 from .dataset_create_components_response import DatasetCreateComponentsResponse as DatasetCreateComponentsResponse
 from .sample_retrieve_prov_info_response import SampleRetrieveProvInfoResponse as SampleRetrieveProvInfoResponse
 from .dataset_retrieve_revisions_response import DatasetRetrieveRevisionsResponse as DatasetRetrieveRevisionsResponse
-from .entity_retrieve_globus_url_response import EntityRetrieveGlobusURLResponse as EntityRetrieveGlobusURLResponse
-from .supported_entity_type_list_response import SupportedEntityTypeListResponse as SupportedEntityTypeListResponse
 from .entity_list_ancestor_organs_response import EntityListAncestorOrgansResponse as EntityListAncestorOrgansResponse
 from .dataset_retrieve_sankey_data_response import (
     DatasetRetrieveSankeyDataResponse as DatasetRetrieveSankeyDataResponse,

@@ -10,12 +10,13 @@ import pytest
 from tests.utils import assert_matches_type
 from entity_python_sdk import EntityPythonSDK, AsyncEntityPythonSDK
 from entity_python_sdk.types import (
+    Entity,
     Instanceof,
-    EntityRetrieveResponse,
     EntityListTupletsResponse,
     EntityListUploadsResponse,
     EntityListSiblingsResponse,
     EntityListCollectionsResponse,
+    EntityListEntityTypesResponse,
     EntityListAncestorOrgansResponse,
     EntityCreateMultipleSamplesResponse,
 )
@@ -32,7 +33,7 @@ class TestEntities:
         entity = client.entities.retrieve(
             "id",
         )
-        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+        assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +45,7 @@ class TestEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = response.parse()
-        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+        assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +57,7 @@ class TestEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = response.parse()
-            assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+            assert_matches_type(Entity, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -819,6 +820,48 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_get_globus_url(self, client: EntityPythonSDK) -> None:
+        entity = client.entities.get_globus_url(
+            "id",
+        )
+        assert_matches_type(str, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_get_globus_url(self, client: EntityPythonSDK) -> None:
+        response = client.entities.with_raw_response.get_globus_url(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = response.parse()
+        assert_matches_type(str, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_get_globus_url(self, client: EntityPythonSDK) -> None:
+        with client.entities.with_streaming_response.get_globus_url(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = response.parse()
+            assert_matches_type(str, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get_globus_url(self, client: EntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.entities.with_raw_response.get_globus_url(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_is_instance_of(self, client: EntityPythonSDK) -> None:
         entity = client.entities.is_instance_of(
             type="type",
@@ -961,6 +1004,34 @@ class TestEntities:
             client.entities.with_raw_response.list_collections(
                 id="",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_entity_types(self, client: EntityPythonSDK) -> None:
+        entity = client.entities.list_entity_types()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list_entity_types(self, client: EntityPythonSDK) -> None:
+        response = client.entities.with_raw_response.list_entity_types()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = response.parse()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list_entity_types(self, client: EntityPythonSDK) -> None:
+        with client.entities.with_streaming_response.list_entity_types() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = response.parse()
+            assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -1120,48 +1191,6 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_globus_url(self, client: EntityPythonSDK) -> None:
-        entity = client.entities.retrieve_globus_url(
-            "id",
-        )
-        assert_matches_type(str, entity, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_retrieve_globus_url(self, client: EntityPythonSDK) -> None:
-        response = client.entities.with_raw_response.retrieve_globus_url(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        entity = response.parse()
-        assert_matches_type(str, entity, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_retrieve_globus_url(self, client: EntityPythonSDK) -> None:
-        with client.entities.with_streaming_response.retrieve_globus_url(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            entity = response.parse()
-            assert_matches_type(str, entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_retrieve_globus_url(self, client: EntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.entities.with_raw_response.retrieve_globus_url(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_retrieve_provenance(self, client: EntityPythonSDK) -> None:
         entity = client.entities.retrieve_provenance(
             "id",
@@ -1212,7 +1241,7 @@ class TestAsyncEntities:
         entity = await async_client.entities.retrieve(
             "id",
         )
-        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+        assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1224,7 +1253,7 @@ class TestAsyncEntities:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = await response.parse()
-        assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+        assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1236,7 +1265,7 @@ class TestAsyncEntities:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = await response.parse()
-            assert_matches_type(EntityRetrieveResponse, entity, path=["response"])
+            assert_matches_type(Entity, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1999,6 +2028,48 @@ class TestAsyncEntities:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_get_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
+        entity = await async_client.entities.get_globus_url(
+            "id",
+        )
+        assert_matches_type(str, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_get_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.entities.with_raw_response.get_globus_url(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = await response.parse()
+        assert_matches_type(str, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_get_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.entities.with_streaming_response.get_globus_url(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = await response.parse()
+            assert_matches_type(str, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.entities.with_raw_response.get_globus_url(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_is_instance_of(self, async_client: AsyncEntityPythonSDK) -> None:
         entity = await async_client.entities.is_instance_of(
             type="type",
@@ -2141,6 +2212,34 @@ class TestAsyncEntities:
             await async_client.entities.with_raw_response.list_collections(
                 id="",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        entity = await async_client.entities.list_entity_types()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.entities.with_raw_response.list_entity_types()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        entity = await response.parse()
+        assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list_entity_types(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.entities.with_streaming_response.list_entity_types() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            entity = await response.parse()
+            assert_matches_type(EntityListEntityTypesResponse, entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -2296,48 +2395,6 @@ class TestAsyncEntities:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.entities.with_raw_response.list_uploads(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_retrieve_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
-        entity = await async_client.entities.retrieve_globus_url(
-            "id",
-        )
-        assert_matches_type(str, entity, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_retrieve_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.entities.with_raw_response.retrieve_globus_url(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        entity = await response.parse()
-        assert_matches_type(str, entity, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_retrieve_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.entities.with_streaming_response.retrieve_globus_url(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            entity = await response.parse()
-            assert_matches_type(str, entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_retrieve_globus_url(self, async_client: AsyncEntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.entities.with_raw_response.retrieve_globus_url(
-                "",
             )
 
     @pytest.mark.skip()

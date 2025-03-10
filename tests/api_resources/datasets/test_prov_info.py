@@ -10,7 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from entity_python_sdk import EntityPythonSDK, AsyncEntityPythonSDK
 from entity_python_sdk.types.datasets import (
-    ProvInfoListResponse,
+    ProvInfoListAllResponse,
     ProvInfoRetrieveResponse,
 )
 
@@ -73,41 +73,41 @@ class TestProvInfo:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: EntityPythonSDK) -> None:
-        prov_info = client.datasets.prov_info.list()
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+    def test_method_list_all(self, client: EntityPythonSDK) -> None:
+        prov_info = client.datasets.prov_info.list_all()
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: EntityPythonSDK) -> None:
-        prov_info = client.datasets.prov_info.list(
+    def test_method_list_all_with_all_params(self, client: EntityPythonSDK) -> None:
+        prov_info = client.datasets.prov_info.list_all(
             dataset_status="qa",
             format="json",
             group_uuid="group_uuid",
             has_rui_info="true",
             organ="organ",
         )
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: EntityPythonSDK) -> None:
-        response = client.datasets.prov_info.with_raw_response.list()
+    def test_raw_response_list_all(self, client: EntityPythonSDK) -> None:
+        response = client.datasets.prov_info.with_raw_response.list_all()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prov_info = response.parse()
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: EntityPythonSDK) -> None:
-        with client.datasets.prov_info.with_streaming_response.list() as response:
+    def test_streaming_response_list_all(self, client: EntityPythonSDK) -> None:
+        with client.datasets.prov_info.with_streaming_response.list_all() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prov_info = response.parse()
-            assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+            assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,40 +168,40 @@ class TestAsyncProvInfo:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncEntityPythonSDK) -> None:
-        prov_info = await async_client.datasets.prov_info.list()
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+    async def test_method_list_all(self, async_client: AsyncEntityPythonSDK) -> None:
+        prov_info = await async_client.datasets.prov_info.list_all()
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEntityPythonSDK) -> None:
-        prov_info = await async_client.datasets.prov_info.list(
+    async def test_method_list_all_with_all_params(self, async_client: AsyncEntityPythonSDK) -> None:
+        prov_info = await async_client.datasets.prov_info.list_all(
             dataset_status="qa",
             format="json",
             group_uuid="group_uuid",
             has_rui_info="true",
             organ="organ",
         )
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.datasets.prov_info.with_raw_response.list()
+    async def test_raw_response_list_all(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.datasets.prov_info.with_raw_response.list_all()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prov_info = await response.parse()
-        assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+        assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.datasets.prov_info.with_streaming_response.list() as response:
+    async def test_streaming_response_list_all(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.datasets.prov_info.with_streaming_response.list_all() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prov_info = await response.parse()
-            assert_matches_type(ProvInfoListResponse, prov_info, path=["response"])
+            assert_matches_type(ProvInfoListAllResponse, prov_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .sample import Sample
 
-__all__ = ["DatasetRetrieveOrgansResponse"]
+__all__ = ["DatasetListOrgansResponse"]
 
-DatasetRetrieveOrgansResponse: TypeAlias = List[Sample]
+DatasetListOrgansResponse: TypeAlias = List[Sample]

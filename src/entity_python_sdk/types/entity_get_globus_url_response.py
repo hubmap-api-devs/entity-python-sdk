@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["EntityRetrieveGlobusURLResponse"]
+__all__ = ["EntityGetGlobusURLResponse"]
 
-EntityRetrieveGlobusURLResponse: TypeAlias = str
+EntityGetGlobusURLResponse: TypeAlias = str
