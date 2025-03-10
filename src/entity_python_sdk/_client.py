@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import doi, parents, samples, uploads, children, ancestors, descendants
+from .resources import doi, parents, samples, uploads, children, ancestors, descendants, entity_types
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -49,10 +49,11 @@ __all__ = [
 
 class EntityPythonSDK(SyncAPIClient):
     entities: entities.EntitiesResource
+    entity_types: entity_types.EntityTypesResource
     ancestors: ancestors.AncestorsResource
     descendants: descendants.DescendantsResource
-    children: children.ChildrenResource
     parents: parents.ParentsResource
+    children: children.ChildrenResource
     doi: doi.DoiResource
     datasets: datasets.DatasetsResource
     uploads: uploads.UploadsResource
@@ -88,10 +89,10 @@ class EntityPythonSDK(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous EntityPythonSDK client instance.
 
-        This automatically infers the `bearer_token` argument from the `HUBMAP_GLOBUS_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `ENTITY_PYTHON_SDK_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("HUBMAP_GLOBUS_BEARER_TOKEN")
+            bearer_token = os.environ.get("ENTITY_PYTHON_SDK_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         if base_url is None:
@@ -111,10 +112,11 @@ class EntityPythonSDK(SyncAPIClient):
         )
 
         self.entities = entities.EntitiesResource(self)
+        self.entity_types = entity_types.EntityTypesResource(self)
         self.ancestors = ancestors.AncestorsResource(self)
         self.descendants = descendants.DescendantsResource(self)
-        self.children = children.ChildrenResource(self)
         self.parents = parents.ParentsResource(self)
+        self.children = children.ChildrenResource(self)
         self.doi = doi.DoiResource(self)
         self.datasets = datasets.DatasetsResource(self)
         self.uploads = uploads.UploadsResource(self)
@@ -231,10 +233,11 @@ class EntityPythonSDK(SyncAPIClient):
 
 class AsyncEntityPythonSDK(AsyncAPIClient):
     entities: entities.AsyncEntitiesResource
+    entity_types: entity_types.AsyncEntityTypesResource
     ancestors: ancestors.AsyncAncestorsResource
     descendants: descendants.AsyncDescendantsResource
-    children: children.AsyncChildrenResource
     parents: parents.AsyncParentsResource
+    children: children.AsyncChildrenResource
     doi: doi.AsyncDoiResource
     datasets: datasets.AsyncDatasetsResource
     uploads: uploads.AsyncUploadsResource
@@ -270,10 +273,10 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncEntityPythonSDK client instance.
 
-        This automatically infers the `bearer_token` argument from the `HUBMAP_GLOBUS_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `ENTITY_PYTHON_SDK_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("HUBMAP_GLOBUS_BEARER_TOKEN")
+            bearer_token = os.environ.get("ENTITY_PYTHON_SDK_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         if base_url is None:
@@ -293,10 +296,11 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
         )
 
         self.entities = entities.AsyncEntitiesResource(self)
+        self.entity_types = entity_types.AsyncEntityTypesResource(self)
         self.ancestors = ancestors.AsyncAncestorsResource(self)
         self.descendants = descendants.AsyncDescendantsResource(self)
-        self.children = children.AsyncChildrenResource(self)
         self.parents = parents.AsyncParentsResource(self)
+        self.children = children.AsyncChildrenResource(self)
         self.doi = doi.AsyncDoiResource(self)
         self.datasets = datasets.AsyncDatasetsResource(self)
         self.uploads = uploads.AsyncUploadsResource(self)
@@ -414,10 +418,11 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
 class EntityPythonSDKWithRawResponse:
     def __init__(self, client: EntityPythonSDK) -> None:
         self.entities = entities.EntitiesResourceWithRawResponse(client.entities)
+        self.entity_types = entity_types.EntityTypesResourceWithRawResponse(client.entity_types)
         self.ancestors = ancestors.AncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithRawResponse(client.descendants)
-        self.children = children.ChildrenResourceWithRawResponse(client.children)
         self.parents = parents.ParentsResourceWithRawResponse(client.parents)
+        self.children = children.ChildrenResourceWithRawResponse(client.children)
         self.doi = doi.DoiResourceWithRawResponse(client.doi)
         self.datasets = datasets.DatasetsResourceWithRawResponse(client.datasets)
         self.uploads = uploads.UploadsResourceWithRawResponse(client.uploads)
@@ -427,10 +432,11 @@ class EntityPythonSDKWithRawResponse:
 class AsyncEntityPythonSDKWithRawResponse:
     def __init__(self, client: AsyncEntityPythonSDK) -> None:
         self.entities = entities.AsyncEntitiesResourceWithRawResponse(client.entities)
+        self.entity_types = entity_types.AsyncEntityTypesResourceWithRawResponse(client.entity_types)
         self.ancestors = ancestors.AsyncAncestorsResourceWithRawResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithRawResponse(client.descendants)
-        self.children = children.AsyncChildrenResourceWithRawResponse(client.children)
         self.parents = parents.AsyncParentsResourceWithRawResponse(client.parents)
+        self.children = children.AsyncChildrenResourceWithRawResponse(client.children)
         self.doi = doi.AsyncDoiResourceWithRawResponse(client.doi)
         self.datasets = datasets.AsyncDatasetsResourceWithRawResponse(client.datasets)
         self.uploads = uploads.AsyncUploadsResourceWithRawResponse(client.uploads)
@@ -440,10 +446,11 @@ class AsyncEntityPythonSDKWithRawResponse:
 class EntityPythonSDKWithStreamedResponse:
     def __init__(self, client: EntityPythonSDK) -> None:
         self.entities = entities.EntitiesResourceWithStreamingResponse(client.entities)
+        self.entity_types = entity_types.EntityTypesResourceWithStreamingResponse(client.entity_types)
         self.ancestors = ancestors.AncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.DescendantsResourceWithStreamingResponse(client.descendants)
-        self.children = children.ChildrenResourceWithStreamingResponse(client.children)
         self.parents = parents.ParentsResourceWithStreamingResponse(client.parents)
+        self.children = children.ChildrenResourceWithStreamingResponse(client.children)
         self.doi = doi.DoiResourceWithStreamingResponse(client.doi)
         self.datasets = datasets.DatasetsResourceWithStreamingResponse(client.datasets)
         self.uploads = uploads.UploadsResourceWithStreamingResponse(client.uploads)
@@ -453,10 +460,11 @@ class EntityPythonSDKWithStreamedResponse:
 class AsyncEntityPythonSDKWithStreamedResponse:
     def __init__(self, client: AsyncEntityPythonSDK) -> None:
         self.entities = entities.AsyncEntitiesResourceWithStreamingResponse(client.entities)
+        self.entity_types = entity_types.AsyncEntityTypesResourceWithStreamingResponse(client.entity_types)
         self.ancestors = ancestors.AsyncAncestorsResourceWithStreamingResponse(client.ancestors)
         self.descendants = descendants.AsyncDescendantsResourceWithStreamingResponse(client.descendants)
-        self.children = children.AsyncChildrenResourceWithStreamingResponse(client.children)
         self.parents = parents.AsyncParentsResourceWithStreamingResponse(client.parents)
+        self.children = children.AsyncChildrenResourceWithStreamingResponse(client.children)
         self.doi = doi.AsyncDoiResourceWithStreamingResponse(client.doi)
         self.datasets = datasets.AsyncDatasetsResourceWithStreamingResponse(client.datasets)
         self.uploads = uploads.AsyncUploadsResourceWithStreamingResponse(client.uploads)

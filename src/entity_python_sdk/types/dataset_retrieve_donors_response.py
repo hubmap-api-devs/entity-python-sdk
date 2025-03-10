@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .sample import Sample
+from .donor import Donor
 
-__all__ = ["DatasetListSamplesResponse"]
+__all__ = ["DatasetRetrieveDonorsResponse"]
 
-DatasetListSamplesResponse: TypeAlias = List[Sample]
+DatasetRetrieveDonorsResponse: TypeAlias = List[Donor]

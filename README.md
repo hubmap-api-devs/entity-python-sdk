@@ -10,13 +10,13 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.hubmapconsortium.org](https://docs.hubmapconsortium.org/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.entity-python-sdk.com](https://docs.entity-python-sdk.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/hubmapconsortium/entity-python-sdk.git
+# install from this staging repo
+pip install git+ssh://git@github.com/stainless-sdks/entity-python-sdk-python.git
 ```
 
 > [!NOTE]
@@ -32,7 +32,7 @@ from entity_python_sdk import EntityPythonSDK
 
 client = EntityPythonSDK(
     bearer_token=os.environ.get(
-        "HUBMAP_GLOBUS_BEARER_TOKEN"
+        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
@@ -43,7 +43,7 @@ entity = client.entities.retrieve(
 
 While you can provide a `bearer_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `HUBMAP_GLOBUS_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+to add `ENTITY_PYTHON_SDK_BEARER_TOKEN="My Bearer Token"` to your `.env` file
 so that your Bearer Token is not stored in source control.
 
 ## Async usage
@@ -57,7 +57,7 @@ from entity_python_sdk import AsyncEntityPythonSDK
 
 client = AsyncEntityPythonSDK(
     bearer_token=os.environ.get(
-        "HUBMAP_GLOBUS_BEARER_TOKEN"
+        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
@@ -220,9 +220,9 @@ entity = response.parse()  # get the object that `entities.retrieve()` would hav
 print(entity)
 ```
 
-These methods return an [`APIResponse`](https://github.com/hubmapconsortium/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/entity-python-sdk-python/tree/main/src/entity_python_sdk/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/hubmapconsortium/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/entity-python-sdk-python/tree/main/src/entity_python_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -328,7 +328,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/hubmapconsortium/entity-python-sdk/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/entity-python-sdk-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 

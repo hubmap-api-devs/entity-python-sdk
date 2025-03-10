@@ -36,16 +36,15 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.entity import Entity
 from ...types.file_param import FileParam
 from ...types.instanceof import Instanceof
 from ...types.donor_param import DonorParam
 from ...types.person_param import PersonParam
+from ...types.entity_retrieve_response import EntityRetrieveResponse
 from ...types.entity_list_tuplets_response import EntityListTupletsResponse
 from ...types.entity_list_uploads_response import EntityListUploadsResponse
 from ...types.entity_list_siblings_response import EntityListSiblingsResponse
 from ...types.entity_list_collections_response import EntityListCollectionsResponse
-from ...types.entity_list_entity_types_response import EntityListEntityTypesResponse
 from ...types.entity_list_ancestor_organs_response import EntityListAncestorOrgansResponse
 from ...types.entity_create_multiple_samples_response import EntityCreateMultipleSamplesResponse
 
@@ -63,7 +62,7 @@ class EntitiesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
         return EntitiesResourceWithRawResponse(self)
 
@@ -72,7 +71,7 @@ class EntitiesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
         return EntitiesResourceWithStreamingResponse(self)
 
@@ -86,7 +85,7 @@ class EntitiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Entity:
+    ) -> EntityRetrieveResponse:
         """Retrieve a provenance entity by id.
 
         Entity types of Donor, Sample and Datasets.
@@ -103,13 +102,15 @@ class EntitiesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            Entity,
+            EntityRetrieveResponse,
             self._get(
                 f"/entities/{id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
-                cast_to=cast(Any, Entity),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(
+                    Any, EntityRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
@@ -741,40 +742,6 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityCreateMultipleSamplesResponse,
         )
 
-    def get_globus_url(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Get the Globus URL to the given Dataset or Upload entity
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
-        return self._get(
-            f"/entities/{id}/globus-url",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=str,
-        )
-
     def is_instance_of(
         self,
         type: str,
@@ -886,25 +853,6 @@ class EntitiesResource(SyncAPIResource):
                 ),
             ),
             cast_to=EntityListCollectionsResponse,
-        )
-
-    def list_entity_types(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityListEntityTypesResponse:
-        """Get a list of all the available entity types defined in the schema yaml"""
-        return self._get(
-            "/entity-types",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=EntityListEntityTypesResponse,
         )
 
     def list_siblings(
@@ -1066,6 +1014,40 @@ class EntitiesResource(SyncAPIResource):
             cast_to=EntityListUploadsResponse,
         )
 
+    def retrieve_globus_url(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Get the Globus URL to the given Dataset or Upload entity
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        return self._get(
+            f"/entities/{id}/globus-url",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
+        )
+
     def retrieve_provenance(
         self,
         id: str,
@@ -1116,7 +1098,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncEntitiesResourceWithRawResponse(self)
 
@@ -1125,7 +1107,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
         return AsyncEntitiesResourceWithStreamingResponse(self)
 
@@ -1139,7 +1121,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Entity:
+    ) -> EntityRetrieveResponse:
         """Retrieve a provenance entity by id.
 
         Entity types of Donor, Sample and Datasets.
@@ -1156,13 +1138,15 @@ class AsyncEntitiesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            Entity,
+            EntityRetrieveResponse,
             await self._get(
                 f"/entities/{id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
-                cast_to=cast(Any, Entity),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(
+                    Any, EntityRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
@@ -1794,40 +1778,6 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityCreateMultipleSamplesResponse,
         )
 
-    async def get_globus_url(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Get the Globus URL to the given Dataset or Upload entity
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
-        return await self._get(
-            f"/entities/{id}/globus-url",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=str,
-        )
-
     async def is_instance_of(
         self,
         type: str,
@@ -1939,25 +1889,6 @@ class AsyncEntitiesResource(AsyncAPIResource):
                 ),
             ),
             cast_to=EntityListCollectionsResponse,
-        )
-
-    async def list_entity_types(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityListEntityTypesResponse:
-        """Get a list of all the available entity types defined in the schema yaml"""
-        return await self._get(
-            "/entity-types",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=EntityListEntityTypesResponse,
         )
 
     async def list_siblings(
@@ -2121,6 +2052,40 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=EntityListUploadsResponse,
         )
 
+    async def retrieve_globus_url(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Get the Globus URL to the given Dataset or Upload entity
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        return await self._get(
+            f"/entities/{id}/globus-url",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
+        )
+
     async def retrieve_provenance(
         self,
         id: str,
@@ -2173,9 +2138,6 @@ class EntitiesResourceWithRawResponse:
         self.create_multiple_samples = to_raw_response_wrapper(
             entities.create_multiple_samples,
         )
-        self.get_globus_url = to_raw_response_wrapper(
-            entities.get_globus_url,
-        )
         self.is_instance_of = to_raw_response_wrapper(
             entities.is_instance_of,
         )
@@ -2185,9 +2147,6 @@ class EntitiesResourceWithRawResponse:
         self.list_collections = to_raw_response_wrapper(
             entities.list_collections,
         )
-        self.list_entity_types = to_raw_response_wrapper(
-            entities.list_entity_types,
-        )
         self.list_siblings = to_raw_response_wrapper(
             entities.list_siblings,
         )
@@ -2196,6 +2155,9 @@ class EntitiesResourceWithRawResponse:
         )
         self.list_uploads = to_raw_response_wrapper(
             entities.list_uploads,
+        )
+        self.retrieve_globus_url = to_raw_response_wrapper(
+            entities.retrieve_globus_url,
         )
         self.retrieve_provenance = to_raw_response_wrapper(
             entities.retrieve_provenance,
@@ -2219,9 +2181,6 @@ class AsyncEntitiesResourceWithRawResponse:
         self.create_multiple_samples = async_to_raw_response_wrapper(
             entities.create_multiple_samples,
         )
-        self.get_globus_url = async_to_raw_response_wrapper(
-            entities.get_globus_url,
-        )
         self.is_instance_of = async_to_raw_response_wrapper(
             entities.is_instance_of,
         )
@@ -2231,9 +2190,6 @@ class AsyncEntitiesResourceWithRawResponse:
         self.list_collections = async_to_raw_response_wrapper(
             entities.list_collections,
         )
-        self.list_entity_types = async_to_raw_response_wrapper(
-            entities.list_entity_types,
-        )
         self.list_siblings = async_to_raw_response_wrapper(
             entities.list_siblings,
         )
@@ -2242,6 +2198,9 @@ class AsyncEntitiesResourceWithRawResponse:
         )
         self.list_uploads = async_to_raw_response_wrapper(
             entities.list_uploads,
+        )
+        self.retrieve_globus_url = async_to_raw_response_wrapper(
+            entities.retrieve_globus_url,
         )
         self.retrieve_provenance = async_to_raw_response_wrapper(
             entities.retrieve_provenance,
@@ -2265,9 +2224,6 @@ class EntitiesResourceWithStreamingResponse:
         self.create_multiple_samples = to_streamed_response_wrapper(
             entities.create_multiple_samples,
         )
-        self.get_globus_url = to_streamed_response_wrapper(
-            entities.get_globus_url,
-        )
         self.is_instance_of = to_streamed_response_wrapper(
             entities.is_instance_of,
         )
@@ -2277,9 +2233,6 @@ class EntitiesResourceWithStreamingResponse:
         self.list_collections = to_streamed_response_wrapper(
             entities.list_collections,
         )
-        self.list_entity_types = to_streamed_response_wrapper(
-            entities.list_entity_types,
-        )
         self.list_siblings = to_streamed_response_wrapper(
             entities.list_siblings,
         )
@@ -2288,6 +2241,9 @@ class EntitiesResourceWithStreamingResponse:
         )
         self.list_uploads = to_streamed_response_wrapper(
             entities.list_uploads,
+        )
+        self.retrieve_globus_url = to_streamed_response_wrapper(
+            entities.retrieve_globus_url,
         )
         self.retrieve_provenance = to_streamed_response_wrapper(
             entities.retrieve_provenance,
@@ -2311,9 +2267,6 @@ class AsyncEntitiesResourceWithStreamingResponse:
         self.create_multiple_samples = async_to_streamed_response_wrapper(
             entities.create_multiple_samples,
         )
-        self.get_globus_url = async_to_streamed_response_wrapper(
-            entities.get_globus_url,
-        )
         self.is_instance_of = async_to_streamed_response_wrapper(
             entities.is_instance_of,
         )
@@ -2323,9 +2276,6 @@ class AsyncEntitiesResourceWithStreamingResponse:
         self.list_collections = async_to_streamed_response_wrapper(
             entities.list_collections,
         )
-        self.list_entity_types = async_to_streamed_response_wrapper(
-            entities.list_entity_types,
-        )
         self.list_siblings = async_to_streamed_response_wrapper(
             entities.list_siblings,
         )
@@ -2334,6 +2284,9 @@ class AsyncEntitiesResourceWithStreamingResponse:
         )
         self.list_uploads = async_to_streamed_response_wrapper(
             entities.list_uploads,
+        )
+        self.retrieve_globus_url = async_to_streamed_response_wrapper(
+            entities.retrieve_globus_url,
         )
         self.retrieve_provenance = async_to_streamed_response_wrapper(
             entities.retrieve_provenance,

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -14,33 +14,33 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.entity_type_list_response import EntityTypeListResponse
 
-__all__ = ["DoiResource", "AsyncDoiResource"]
+__all__ = ["EntityTypesResource", "AsyncEntityTypesResource"]
 
 
-class DoiResource(SyncAPIResource):
+class EntityTypesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DoiResourceWithRawResponse:
+    def with_raw_response(self) -> EntityTypesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
-        return DoiResourceWithRawResponse(self)
+        return EntityTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DoiResourceWithStreamingResponse:
+    def with_streaming_response(self) -> EntityTypesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
-        return DoiResourceWithStreamingResponse(self)
+        return EntityTypesResourceWithStreamingResponse(self)
 
-    def redirect(
+    def list(
         self,
-        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -48,54 +48,39 @@ class DoiResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """
-        Redirect a request from a doi service
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> EntityTypeListResponse:
+        """Get a list of all the available entity types defined in the schema yaml"""
         return self._get(
-            f"/doi/redirect/{id}",
+            "/entity-types",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=EntityTypeListResponse,
         )
 
 
-class AsyncDoiResource(AsyncAPIResource):
+class AsyncEntityTypesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDoiResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncEntityTypesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncDoiResourceWithRawResponse(self)
+        return AsyncEntityTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDoiResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncEntityTypesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
-        return AsyncDoiResourceWithStreamingResponse(self)
+        return AsyncEntityTypesResourceWithStreamingResponse(self)
 
-    async def redirect(
+    async def list(
         self,
-        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -103,62 +88,48 @@ class AsyncDoiResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """
-        Redirect a request from a doi service
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> EntityTypeListResponse:
+        """Get a list of all the available entity types defined in the schema yaml"""
         return await self._get(
-            f"/doi/redirect/{id}",
+            "/entity-types",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=EntityTypeListResponse,
         )
 
 
-class DoiResourceWithRawResponse:
-    def __init__(self, doi: DoiResource) -> None:
-        self._doi = doi
+class EntityTypesResourceWithRawResponse:
+    def __init__(self, entity_types: EntityTypesResource) -> None:
+        self._entity_types = entity_types
 
-        self.redirect = to_raw_response_wrapper(
-            doi.redirect,
+        self.list = to_raw_response_wrapper(
+            entity_types.list,
         )
 
 
-class AsyncDoiResourceWithRawResponse:
-    def __init__(self, doi: AsyncDoiResource) -> None:
-        self._doi = doi
+class AsyncEntityTypesResourceWithRawResponse:
+    def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
+        self._entity_types = entity_types
 
-        self.redirect = async_to_raw_response_wrapper(
-            doi.redirect,
+        self.list = async_to_raw_response_wrapper(
+            entity_types.list,
         )
 
 
-class DoiResourceWithStreamingResponse:
-    def __init__(self, doi: DoiResource) -> None:
-        self._doi = doi
+class EntityTypesResourceWithStreamingResponse:
+    def __init__(self, entity_types: EntityTypesResource) -> None:
+        self._entity_types = entity_types
 
-        self.redirect = to_streamed_response_wrapper(
-            doi.redirect,
+        self.list = to_streamed_response_wrapper(
+            entity_types.list,
         )
 
 
-class AsyncDoiResourceWithStreamingResponse:
-    def __init__(self, doi: AsyncDoiResource) -> None:
-        self._doi = doi
+class AsyncEntityTypesResourceWithStreamingResponse:
+    def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
+        self._entity_types = entity_types
 
-        self.redirect = async_to_streamed_response_wrapper(
-            doi.redirect,
+        self.list = async_to_streamed_response_wrapper(
+            entity_types.list,
         )
