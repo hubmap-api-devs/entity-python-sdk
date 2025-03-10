@@ -14,30 +14,30 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.entity_type_list_response import EntityTypeListResponse
+from ..types.supported_entity_type_list_response import SupportedEntityTypeListResponse
 
-__all__ = ["EntityTypesResource", "AsyncEntityTypesResource"]
+__all__ = ["SupportedEntityTypesResource", "AsyncSupportedEntityTypesResource"]
 
 
-class EntityTypesResource(SyncAPIResource):
+class SupportedEntityTypesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EntityTypesResourceWithRawResponse:
+    def with_raw_response(self) -> SupportedEntityTypesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
-        return EntityTypesResourceWithRawResponse(self)
+        return SupportedEntityTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EntityTypesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SupportedEntityTypesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
-        return EntityTypesResourceWithStreamingResponse(self)
+        return SupportedEntityTypesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -48,36 +48,36 @@ class EntityTypesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityTypeListResponse:
+    ) -> SupportedEntityTypeListResponse:
         """Get a list of all the available entity types defined in the schema yaml"""
         return self._get(
             "/entity-types",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityTypeListResponse,
+            cast_to=SupportedEntityTypeListResponse,
         )
 
 
-class AsyncEntityTypesResource(AsyncAPIResource):
+class AsyncSupportedEntityTypesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEntityTypesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSupportedEntityTypesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncEntityTypesResourceWithRawResponse(self)
+        return AsyncSupportedEntityTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEntityTypesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSupportedEntityTypesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
         """
-        return AsyncEntityTypesResourceWithStreamingResponse(self)
+        return AsyncSupportedEntityTypesResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -88,48 +88,48 @@ class AsyncEntityTypesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityTypeListResponse:
+    ) -> SupportedEntityTypeListResponse:
         """Get a list of all the available entity types defined in the schema yaml"""
         return await self._get(
             "/entity-types",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntityTypeListResponse,
+            cast_to=SupportedEntityTypeListResponse,
         )
 
 
-class EntityTypesResourceWithRawResponse:
-    def __init__(self, entity_types: EntityTypesResource) -> None:
-        self._entity_types = entity_types
+class SupportedEntityTypesResourceWithRawResponse:
+    def __init__(self, supported_entity_types: SupportedEntityTypesResource) -> None:
+        self._supported_entity_types = supported_entity_types
 
         self.list = to_raw_response_wrapper(
-            entity_types.list,
+            supported_entity_types.list,
         )
 
 
-class AsyncEntityTypesResourceWithRawResponse:
-    def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
-        self._entity_types = entity_types
+class AsyncSupportedEntityTypesResourceWithRawResponse:
+    def __init__(self, supported_entity_types: AsyncSupportedEntityTypesResource) -> None:
+        self._supported_entity_types = supported_entity_types
 
         self.list = async_to_raw_response_wrapper(
-            entity_types.list,
+            supported_entity_types.list,
         )
 
 
-class EntityTypesResourceWithStreamingResponse:
-    def __init__(self, entity_types: EntityTypesResource) -> None:
-        self._entity_types = entity_types
+class SupportedEntityTypesResourceWithStreamingResponse:
+    def __init__(self, supported_entity_types: SupportedEntityTypesResource) -> None:
+        self._supported_entity_types = supported_entity_types
 
         self.list = to_streamed_response_wrapper(
-            entity_types.list,
+            supported_entity_types.list,
         )
 
 
-class AsyncEntityTypesResourceWithStreamingResponse:
-    def __init__(self, entity_types: AsyncEntityTypesResource) -> None:
-        self._entity_types = entity_types
+class AsyncSupportedEntityTypesResourceWithStreamingResponse:
+    def __init__(self, supported_entity_types: AsyncSupportedEntityTypesResource) -> None:
+        self._supported_entity_types = supported_entity_types
 
         self.list = async_to_streamed_response_wrapper(
-            entity_types.list,
+            supported_entity_types.list,
         )

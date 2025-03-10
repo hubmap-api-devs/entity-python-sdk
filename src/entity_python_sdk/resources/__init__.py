@@ -72,13 +72,13 @@ from .descendants import (
     DescendantsResourceWithStreamingResponse,
     AsyncDescendantsResourceWithStreamingResponse,
 )
-from .entity_types import (
-    EntityTypesResource,
-    AsyncEntityTypesResource,
-    EntityTypesResourceWithRawResponse,
-    AsyncEntityTypesResourceWithRawResponse,
-    EntityTypesResourceWithStreamingResponse,
-    AsyncEntityTypesResourceWithStreamingResponse,
+from .supported_entity_types import (
+    SupportedEntityTypesResource,
+    AsyncSupportedEntityTypesResource,
+    SupportedEntityTypesResourceWithRawResponse,
+    AsyncSupportedEntityTypesResourceWithRawResponse,
+    SupportedEntityTypesResourceWithStreamingResponse,
+    AsyncSupportedEntityTypesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -88,12 +88,12 @@ __all__ = [
     "AsyncEntitiesResourceWithRawResponse",
     "EntitiesResourceWithStreamingResponse",
     "AsyncEntitiesResourceWithStreamingResponse",
-    "EntityTypesResource",
-    "AsyncEntityTypesResource",
-    "EntityTypesResourceWithRawResponse",
-    "AsyncEntityTypesResourceWithRawResponse",
-    "EntityTypesResourceWithStreamingResponse",
-    "AsyncEntityTypesResourceWithStreamingResponse",
+    "SupportedEntityTypesResource",
+    "AsyncSupportedEntityTypesResource",
+    "SupportedEntityTypesResourceWithRawResponse",
+    "AsyncSupportedEntityTypesResourceWithRawResponse",
+    "SupportedEntityTypesResourceWithStreamingResponse",
+    "AsyncSupportedEntityTypesResourceWithStreamingResponse",
     "AncestorsResource",
     "AsyncAncestorsResource",
     "AncestorsResourceWithRawResponse",
