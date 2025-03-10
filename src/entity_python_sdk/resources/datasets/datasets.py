@@ -40,10 +40,10 @@ from ..._base_client import make_request_options
 from ...types.dataset import Dataset
 from ...types.dataset_param import DatasetParam
 from ...types.dataset_bulk_update_response import DatasetBulkUpdateResponse
-from ...types.dataset_retrieve_donors_response import DatasetRetrieveDonorsResponse
-from ...types.dataset_retrieve_organs_response import DatasetRetrieveOrgansResponse
+from ...types.dataset_list_donors_response import DatasetListDonorsResponse
+from ...types.dataset_list_organs_response import DatasetListOrgansResponse
+from ...types.dataset_list_samples_response import DatasetListSamplesResponse
 from ...types.dataset_list_unpublished_response import DatasetListUnpublishedResponse
-from ...types.dataset_retrieve_samples_response import DatasetRetrieveSamplesResponse
 from ...types.dataset_create_components_response import DatasetCreateComponentsResponse
 from ...types.dataset_retrieve_revisions_response import DatasetRetrieveRevisionsResponse
 from ...types.dataset_retrieve_sankey_data_response import DatasetRetrieveSankeyDataResponse
@@ -65,7 +65,7 @@ class DatasetsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return DatasetsResourceWithRawResponse(self)
 
@@ -74,7 +74,7 @@ class DatasetsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
         """
         return DatasetsResourceWithStreamingResponse(self)
 
@@ -162,6 +162,107 @@ class DatasetsResource(SyncAPIResource):
             cast_to=DatasetCreateComponentsResponse,
         )
 
+    def list_donors(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListDonorsResponse:
+        """
+        Retrieve a list of all of the donors that are associated with the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/datasets/{id}/donors",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListDonorsResponse,
+        )
+
+    def list_organs(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListOrgansResponse:
+        """
+        Retrieve a list of all of the smples that are organs that are associated with
+        the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/datasets/{id}/organs",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListOrgansResponse,
+        )
+
+    def list_samples(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListSamplesResponse:
+        """
+        Retrieve a list of all of the samples that are not organs that are associated
+        with the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/datasets/{id}/samples",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListSamplesResponse,
+        )
+
     def list_unpublished(
         self,
         *,
@@ -243,39 +344,6 @@ class DatasetsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
-        )
-
-    def retrieve_donors(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveDonorsResponse:
-        """
-        Retrieve a list of all of the donors that are associated with the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/datasets/{id}/donors",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveDonorsResponse,
         )
 
     def retrieve_latest_revision(
@@ -365,40 +433,6 @@ class DatasetsResource(SyncAPIResource):
                 ),
             ),
             cast_to=DatasetRetrieveMultiRevisionsResponse,
-        )
-
-    def retrieve_organs(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveOrgansResponse:
-        """
-        Retrieve a list of all of the smples that are organs that are associated with
-        the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/datasets/{id}/organs",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveOrgansResponse,
         )
 
     def retrieve_paired_dataset(
@@ -581,40 +615,6 @@ class DatasetsResource(SyncAPIResource):
             cast_to=DatasetRetrieveRevisionsResponse,
         )
 
-    def retrieve_samples(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveSamplesResponse:
-        """
-        Retrieve a list of all of the samples that are not organs that are associated
-        with the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/datasets/{id}/samples",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveSamplesResponse,
-        )
-
     def retrieve_sankey_data(
         self,
         *,
@@ -649,7 +649,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return AsyncDatasetsResourceWithRawResponse(self)
 
@@ -658,7 +658,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
         """
         return AsyncDatasetsResourceWithStreamingResponse(self)
 
@@ -744,6 +744,107 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DatasetCreateComponentsResponse,
+        )
+
+    async def list_donors(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListDonorsResponse:
+        """
+        Retrieve a list of all of the donors that are associated with the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/datasets/{id}/donors",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListDonorsResponse,
+        )
+
+    async def list_organs(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListOrgansResponse:
+        """
+        Retrieve a list of all of the smples that are organs that are associated with
+        the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/datasets/{id}/organs",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListOrgansResponse,
+        )
+
+    async def list_samples(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasetListSamplesResponse:
+        """
+        Retrieve a list of all of the samples that are not organs that are associated
+        with the dataset id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/datasets/{id}/samples",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetListSamplesResponse,
         )
 
     async def list_unpublished(
@@ -833,39 +934,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def retrieve_donors(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveDonorsResponse:
-        """
-        Retrieve a list of all of the donors that are associated with the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/datasets/{id}/donors",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveDonorsResponse,
-        )
-
     async def retrieve_latest_revision(
         self,
         id: str,
@@ -953,40 +1021,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 ),
             ),
             cast_to=DatasetRetrieveMultiRevisionsResponse,
-        )
-
-    async def retrieve_organs(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveOrgansResponse:
-        """
-        Retrieve a list of all of the smples that are organs that are associated with
-        the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/datasets/{id}/organs",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveOrgansResponse,
         )
 
     async def retrieve_paired_dataset(
@@ -1169,40 +1203,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
             cast_to=DatasetRetrieveRevisionsResponse,
         )
 
-    async def retrieve_samples(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatasetRetrieveSamplesResponse:
-        """
-        Retrieve a list of all of the samples that are not organs that are associated
-        with the dataset id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/datasets/{id}/samples",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DatasetRetrieveSamplesResponse,
-        )
-
     async def retrieve_sankey_data(
         self,
         *,
@@ -1236,23 +1236,26 @@ class DatasetsResourceWithRawResponse:
         self.create_components = to_raw_response_wrapper(
             datasets.create_components,
         )
+        self.list_donors = to_raw_response_wrapper(
+            datasets.list_donors,
+        )
+        self.list_organs = to_raw_response_wrapper(
+            datasets.list_organs,
+        )
+        self.list_samples = to_raw_response_wrapper(
+            datasets.list_samples,
+        )
         self.list_unpublished = to_raw_response_wrapper(
             datasets.list_unpublished,
         )
         self.retract = to_raw_response_wrapper(
             datasets.retract,
         )
-        self.retrieve_donors = to_raw_response_wrapper(
-            datasets.retrieve_donors,
-        )
         self.retrieve_latest_revision = to_raw_response_wrapper(
             datasets.retrieve_latest_revision,
         )
         self.retrieve_multi_revisions = to_raw_response_wrapper(
             datasets.retrieve_multi_revisions,
-        )
-        self.retrieve_organs = to_raw_response_wrapper(
-            datasets.retrieve_organs,
         )
         self.retrieve_paired_dataset = to_raw_response_wrapper(
             datasets.retrieve_paired_dataset,
@@ -1265,9 +1268,6 @@ class DatasetsResourceWithRawResponse:
         )
         self.retrieve_revisions = to_raw_response_wrapper(
             datasets.retrieve_revisions,
-        )
-        self.retrieve_samples = to_raw_response_wrapper(
-            datasets.retrieve_samples,
         )
         self.retrieve_sankey_data = to_raw_response_wrapper(
             datasets.retrieve_sankey_data,
@@ -1288,23 +1288,26 @@ class AsyncDatasetsResourceWithRawResponse:
         self.create_components = async_to_raw_response_wrapper(
             datasets.create_components,
         )
+        self.list_donors = async_to_raw_response_wrapper(
+            datasets.list_donors,
+        )
+        self.list_organs = async_to_raw_response_wrapper(
+            datasets.list_organs,
+        )
+        self.list_samples = async_to_raw_response_wrapper(
+            datasets.list_samples,
+        )
         self.list_unpublished = async_to_raw_response_wrapper(
             datasets.list_unpublished,
         )
         self.retract = async_to_raw_response_wrapper(
             datasets.retract,
         )
-        self.retrieve_donors = async_to_raw_response_wrapper(
-            datasets.retrieve_donors,
-        )
         self.retrieve_latest_revision = async_to_raw_response_wrapper(
             datasets.retrieve_latest_revision,
         )
         self.retrieve_multi_revisions = async_to_raw_response_wrapper(
             datasets.retrieve_multi_revisions,
-        )
-        self.retrieve_organs = async_to_raw_response_wrapper(
-            datasets.retrieve_organs,
         )
         self.retrieve_paired_dataset = async_to_raw_response_wrapper(
             datasets.retrieve_paired_dataset,
@@ -1317,9 +1320,6 @@ class AsyncDatasetsResourceWithRawResponse:
         )
         self.retrieve_revisions = async_to_raw_response_wrapper(
             datasets.retrieve_revisions,
-        )
-        self.retrieve_samples = async_to_raw_response_wrapper(
-            datasets.retrieve_samples,
         )
         self.retrieve_sankey_data = async_to_raw_response_wrapper(
             datasets.retrieve_sankey_data,
@@ -1340,23 +1340,26 @@ class DatasetsResourceWithStreamingResponse:
         self.create_components = to_streamed_response_wrapper(
             datasets.create_components,
         )
+        self.list_donors = to_streamed_response_wrapper(
+            datasets.list_donors,
+        )
+        self.list_organs = to_streamed_response_wrapper(
+            datasets.list_organs,
+        )
+        self.list_samples = to_streamed_response_wrapper(
+            datasets.list_samples,
+        )
         self.list_unpublished = to_streamed_response_wrapper(
             datasets.list_unpublished,
         )
         self.retract = to_streamed_response_wrapper(
             datasets.retract,
         )
-        self.retrieve_donors = to_streamed_response_wrapper(
-            datasets.retrieve_donors,
-        )
         self.retrieve_latest_revision = to_streamed_response_wrapper(
             datasets.retrieve_latest_revision,
         )
         self.retrieve_multi_revisions = to_streamed_response_wrapper(
             datasets.retrieve_multi_revisions,
-        )
-        self.retrieve_organs = to_streamed_response_wrapper(
-            datasets.retrieve_organs,
         )
         self.retrieve_paired_dataset = to_streamed_response_wrapper(
             datasets.retrieve_paired_dataset,
@@ -1369,9 +1372,6 @@ class DatasetsResourceWithStreamingResponse:
         )
         self.retrieve_revisions = to_streamed_response_wrapper(
             datasets.retrieve_revisions,
-        )
-        self.retrieve_samples = to_streamed_response_wrapper(
-            datasets.retrieve_samples,
         )
         self.retrieve_sankey_data = to_streamed_response_wrapper(
             datasets.retrieve_sankey_data,
@@ -1392,23 +1392,26 @@ class AsyncDatasetsResourceWithStreamingResponse:
         self.create_components = async_to_streamed_response_wrapper(
             datasets.create_components,
         )
+        self.list_donors = async_to_streamed_response_wrapper(
+            datasets.list_donors,
+        )
+        self.list_organs = async_to_streamed_response_wrapper(
+            datasets.list_organs,
+        )
+        self.list_samples = async_to_streamed_response_wrapper(
+            datasets.list_samples,
+        )
         self.list_unpublished = async_to_streamed_response_wrapper(
             datasets.list_unpublished,
         )
         self.retract = async_to_streamed_response_wrapper(
             datasets.retract,
         )
-        self.retrieve_donors = async_to_streamed_response_wrapper(
-            datasets.retrieve_donors,
-        )
         self.retrieve_latest_revision = async_to_streamed_response_wrapper(
             datasets.retrieve_latest_revision,
         )
         self.retrieve_multi_revisions = async_to_streamed_response_wrapper(
             datasets.retrieve_multi_revisions,
-        )
-        self.retrieve_organs = async_to_streamed_response_wrapper(
-            datasets.retrieve_organs,
         )
         self.retrieve_paired_dataset = async_to_streamed_response_wrapper(
             datasets.retrieve_paired_dataset,
@@ -1421,9 +1424,6 @@ class AsyncDatasetsResourceWithStreamingResponse:
         )
         self.retrieve_revisions = async_to_streamed_response_wrapper(
             datasets.retrieve_revisions,
-        )
-        self.retrieve_samples = async_to_streamed_response_wrapper(
-            datasets.retrieve_samples,
         )
         self.retrieve_sankey_data = async_to_streamed_response_wrapper(
             datasets.retrieve_sankey_data,

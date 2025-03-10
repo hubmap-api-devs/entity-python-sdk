@@ -345,7 +345,7 @@ class TestEntityPythonSDK:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == bearer_token
 
-        with update_env(**{"ENTITY_PYTHON_SDK_BEARER_TOKEN": Omit()}):
+        with update_env(**{"HUBMAP_GLOBUS_BEARER_TOKEN": Omit()}):
             client2 = EntityPythonSDK(base_url=base_url, bearer_token=None, _strict_response_validation=True)
 
         client2._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1129,7 +1129,7 @@ class TestAsyncEntityPythonSDK:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == bearer_token
 
-        with update_env(**{"ENTITY_PYTHON_SDK_BEARER_TOKEN": Omit()}):
+        with update_env(**{"HUBMAP_GLOBUS_BEARER_TOKEN": Omit()}):
             client2 = AsyncEntityPythonSDK(base_url=base_url, bearer_token=None, _strict_response_validation=True)
 
         client2._build_request(FinalRequestOptions(method="get", url="/foo"))

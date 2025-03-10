@@ -12,10 +12,10 @@ from entity_python_sdk import EntityPythonSDK, AsyncEntityPythonSDK
 from entity_python_sdk.types import (
     Dataset,
     DatasetBulkUpdateResponse,
-    DatasetRetrieveDonorsResponse,
-    DatasetRetrieveOrgansResponse,
+    DatasetListDonorsResponse,
+    DatasetListOrgansResponse,
+    DatasetListSamplesResponse,
     DatasetListUnpublishedResponse,
-    DatasetRetrieveSamplesResponse,
     DatasetCreateComponentsResponse,
     DatasetRetrieveRevisionsResponse,
     DatasetRetrieveSankeyDataResponse,
@@ -168,6 +168,132 @@ class TestDatasets:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_donors(self, client: EntityPythonSDK) -> None:
+        dataset = client.datasets.list_donors(
+            "id",
+        )
+        assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list_donors(self, client: EntityPythonSDK) -> None:
+        response = client.datasets.with_raw_response.list_donors(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = response.parse()
+        assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list_donors(self, client: EntityPythonSDK) -> None:
+        with client.datasets.with_streaming_response.list_donors(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = response.parse()
+            assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list_donors(self, client: EntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.datasets.with_raw_response.list_donors(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_organs(self, client: EntityPythonSDK) -> None:
+        dataset = client.datasets.list_organs(
+            "id",
+        )
+        assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list_organs(self, client: EntityPythonSDK) -> None:
+        response = client.datasets.with_raw_response.list_organs(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = response.parse()
+        assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list_organs(self, client: EntityPythonSDK) -> None:
+        with client.datasets.with_streaming_response.list_organs(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = response.parse()
+            assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list_organs(self, client: EntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.datasets.with_raw_response.list_organs(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_samples(self, client: EntityPythonSDK) -> None:
+        dataset = client.datasets.list_samples(
+            "id",
+        )
+        assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list_samples(self, client: EntityPythonSDK) -> None:
+        response = client.datasets.with_raw_response.list_samples(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = response.parse()
+        assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list_samples(self, client: EntityPythonSDK) -> None:
+        with client.datasets.with_streaming_response.list_samples(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = response.parse()
+            assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list_samples(self, client: EntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.datasets.with_raw_response.list_samples(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list_unpublished(self, client: EntityPythonSDK) -> None:
         dataset = client.datasets.list_unpublished()
         assert_matches_type(DatasetListUnpublishedResponse, dataset, path=["response"])
@@ -251,48 +377,6 @@ class TestDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.datasets.with_raw_response.retract(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_retrieve_donors(self, client: EntityPythonSDK) -> None:
-        dataset = client.datasets.retrieve_donors(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_retrieve_donors(self, client: EntityPythonSDK) -> None:
-        response = client.datasets.with_raw_response.retrieve_donors(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = response.parse()
-        assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_retrieve_donors(self, client: EntityPythonSDK) -> None:
-        with client.datasets.with_streaming_response.retrieve_donors(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = response.parse()
-            assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_retrieve_donors(self, client: EntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.datasets.with_raw_response.retrieve_donors(
-                "",
             )
 
     @pytest.mark.skip()
@@ -386,48 +470,6 @@ class TestDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.datasets.with_raw_response.retrieve_multi_revisions(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_retrieve_organs(self, client: EntityPythonSDK) -> None:
-        dataset = client.datasets.retrieve_organs(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_retrieve_organs(self, client: EntityPythonSDK) -> None:
-        response = client.datasets.with_raw_response.retrieve_organs(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = response.parse()
-        assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_retrieve_organs(self, client: EntityPythonSDK) -> None:
-        with client.datasets.with_streaming_response.retrieve_organs(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = response.parse()
-            assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_retrieve_organs(self, client: EntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.datasets.with_raw_response.retrieve_organs(
-                "",
             )
 
     @pytest.mark.skip()
@@ -623,48 +665,6 @@ class TestDatasets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_samples(self, client: EntityPythonSDK) -> None:
-        dataset = client.datasets.retrieve_samples(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_retrieve_samples(self, client: EntityPythonSDK) -> None:
-        response = client.datasets.with_raw_response.retrieve_samples(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = response.parse()
-        assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_retrieve_samples(self, client: EntityPythonSDK) -> None:
-        with client.datasets.with_streaming_response.retrieve_samples(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = response.parse()
-            assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_retrieve_samples(self, client: EntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.datasets.with_raw_response.retrieve_samples(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_retrieve_sankey_data(self, client: EntityPythonSDK) -> None:
         dataset = client.datasets.retrieve_sankey_data()
         assert_matches_type(DatasetRetrieveSankeyDataResponse, dataset, path=["response"])
@@ -833,6 +833,132 @@ class TestAsyncDatasets:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list_donors(self, async_client: AsyncEntityPythonSDK) -> None:
+        dataset = await async_client.datasets.list_donors(
+            "id",
+        )
+        assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list_donors(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.datasets.with_raw_response.list_donors(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = await response.parse()
+        assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list_donors(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.datasets.with_streaming_response.list_donors(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = await response.parse()
+            assert_matches_type(DatasetListDonorsResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list_donors(self, async_client: AsyncEntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.datasets.with_raw_response.list_donors(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_organs(self, async_client: AsyncEntityPythonSDK) -> None:
+        dataset = await async_client.datasets.list_organs(
+            "id",
+        )
+        assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list_organs(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.datasets.with_raw_response.list_organs(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = await response.parse()
+        assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list_organs(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.datasets.with_streaming_response.list_organs(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = await response.parse()
+            assert_matches_type(DatasetListOrgansResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list_organs(self, async_client: AsyncEntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.datasets.with_raw_response.list_organs(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_samples(self, async_client: AsyncEntityPythonSDK) -> None:
+        dataset = await async_client.datasets.list_samples(
+            "id",
+        )
+        assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list_samples(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.datasets.with_raw_response.list_samples(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = await response.parse()
+        assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list_samples(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.datasets.with_streaming_response.list_samples(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = await response.parse()
+            assert_matches_type(DatasetListSamplesResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list_samples(self, async_client: AsyncEntityPythonSDK) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.datasets.with_raw_response.list_samples(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list_unpublished(self, async_client: AsyncEntityPythonSDK) -> None:
         dataset = await async_client.datasets.list_unpublished()
         assert_matches_type(DatasetListUnpublishedResponse, dataset, path=["response"])
@@ -916,48 +1042,6 @@ class TestAsyncDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.datasets.with_raw_response.retract(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_retrieve_donors(self, async_client: AsyncEntityPythonSDK) -> None:
-        dataset = await async_client.datasets.retrieve_donors(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_retrieve_donors(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.datasets.with_raw_response.retrieve_donors(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = await response.parse()
-        assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_retrieve_donors(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.datasets.with_streaming_response.retrieve_donors(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = await response.parse()
-            assert_matches_type(DatasetRetrieveDonorsResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_retrieve_donors(self, async_client: AsyncEntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.datasets.with_raw_response.retrieve_donors(
-                "",
             )
 
     @pytest.mark.skip()
@@ -1051,48 +1135,6 @@ class TestAsyncDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.datasets.with_raw_response.retrieve_multi_revisions(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_retrieve_organs(self, async_client: AsyncEntityPythonSDK) -> None:
-        dataset = await async_client.datasets.retrieve_organs(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_retrieve_organs(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.datasets.with_raw_response.retrieve_organs(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = await response.parse()
-        assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_retrieve_organs(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.datasets.with_streaming_response.retrieve_organs(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = await response.parse()
-            assert_matches_type(DatasetRetrieveOrgansResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_retrieve_organs(self, async_client: AsyncEntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.datasets.with_raw_response.retrieve_organs(
-                "",
             )
 
     @pytest.mark.skip()
@@ -1284,48 +1326,6 @@ class TestAsyncDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.datasets.with_raw_response.retrieve_revisions(
                 id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_retrieve_samples(self, async_client: AsyncEntityPythonSDK) -> None:
-        dataset = await async_client.datasets.retrieve_samples(
-            "id",
-        )
-        assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_retrieve_samples(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.datasets.with_raw_response.retrieve_samples(
-            "id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        dataset = await response.parse()
-        assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_retrieve_samples(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.datasets.with_streaming_response.retrieve_samples(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            dataset = await response.parse()
-            assert_matches_type(DatasetRetrieveSamplesResponse, dataset, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_retrieve_samples(self, async_client: AsyncEntityPythonSDK) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.datasets.with_raw_response.retrieve_samples(
-                "",
             )
 
     @pytest.mark.skip()

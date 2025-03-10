@@ -20,8 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.datasets import prov_info_list_params, prov_info_retrieve_params
-from ...types.datasets.prov_info_list_response import ProvInfoListResponse
+from ...types.datasets import prov_info_list_all_params, prov_info_retrieve_params
+from ...types.datasets.prov_info_list_all_response import ProvInfoListAllResponse
 from ...types.datasets.prov_info_retrieve_response import ProvInfoRetrieveResponse
 
 __all__ = ["ProvInfoResource", "AsyncProvInfoResource"]
@@ -34,7 +34,7 @@ class ProvInfoResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return ProvInfoResourceWithRawResponse(self)
 
@@ -43,7 +43,7 @@ class ProvInfoResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
         """
         return ProvInfoResourceWithStreamingResponse(self)
 
@@ -91,7 +91,7 @@ class ProvInfoResource(SyncAPIResource):
             cast_to=ProvInfoRetrieveResponse,
         )
 
-    def list(
+    def list_all(
         self,
         *,
         dataset_status: Literal["qa", "new", "published"] | NotGiven = NOT_GIVEN,
@@ -105,7 +105,7 @@ class ProvInfoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProvInfoListResponse:
+    ) -> ProvInfoListAllResponse:
         """
         returns ALL provenance information for ALL datasets in a default table/tsv
         format or optionally a json format when an optional ?format=json parameter is
@@ -149,10 +149,10 @@ class ProvInfoResource(SyncAPIResource):
                         "has_rui_info": has_rui_info,
                         "organ": organ,
                     },
-                    prov_info_list_params.ProvInfoListParams,
+                    prov_info_list_all_params.ProvInfoListAllParams,
                 ),
             ),
-            cast_to=ProvInfoListResponse,
+            cast_to=ProvInfoListAllResponse,
         )
 
 
@@ -163,7 +163,7 @@ class AsyncProvInfoResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return AsyncProvInfoResourceWithRawResponse(self)
 
@@ -172,7 +172,7 @@ class AsyncProvInfoResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/entity-python-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
         """
         return AsyncProvInfoResourceWithStreamingResponse(self)
 
@@ -220,7 +220,7 @@ class AsyncProvInfoResource(AsyncAPIResource):
             cast_to=ProvInfoRetrieveResponse,
         )
 
-    async def list(
+    async def list_all(
         self,
         *,
         dataset_status: Literal["qa", "new", "published"] | NotGiven = NOT_GIVEN,
@@ -234,7 +234,7 @@ class AsyncProvInfoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProvInfoListResponse:
+    ) -> ProvInfoListAllResponse:
         """
         returns ALL provenance information for ALL datasets in a default table/tsv
         format or optionally a json format when an optional ?format=json parameter is
@@ -278,10 +278,10 @@ class AsyncProvInfoResource(AsyncAPIResource):
                         "has_rui_info": has_rui_info,
                         "organ": organ,
                     },
-                    prov_info_list_params.ProvInfoListParams,
+                    prov_info_list_all_params.ProvInfoListAllParams,
                 ),
             ),
-            cast_to=ProvInfoListResponse,
+            cast_to=ProvInfoListAllResponse,
         )
 
 
@@ -292,8 +292,8 @@ class ProvInfoResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             prov_info.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            prov_info.list,
+        self.list_all = to_raw_response_wrapper(
+            prov_info.list_all,
         )
 
 
@@ -304,8 +304,8 @@ class AsyncProvInfoResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             prov_info.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            prov_info.list,
+        self.list_all = async_to_raw_response_wrapper(
+            prov_info.list_all,
         )
 
 
@@ -316,8 +316,8 @@ class ProvInfoResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             prov_info.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            prov_info.list,
+        self.list_all = to_streamed_response_wrapper(
+            prov_info.list_all,
         )
 
 
@@ -328,6 +328,6 @@ class AsyncProvInfoResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             prov_info.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            prov_info.list,
+        self.list_all = async_to_streamed_response_wrapper(
+            prov_info.list_all,
         )

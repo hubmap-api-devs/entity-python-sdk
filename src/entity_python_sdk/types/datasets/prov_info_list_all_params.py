@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["ProvInfoListParams"]
+__all__ = ["ProvInfoListAllParams"]
 
 
-class ProvInfoListParams(TypedDict, total=False):
+class ProvInfoListAllParams(TypedDict, total=False):
     dataset_status: Literal["qa", "new", "published"]
     """Case insensitive string indicating the current status of a dataset"""
 
