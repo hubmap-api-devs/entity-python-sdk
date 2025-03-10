@@ -1,7 +1,7 @@
 [project]
 name = "entity_python_sdk"
-version = "2.0.0"
-description = "The official Python sdk for Entity API"
+version = "2.1.0"
+description = "The official Python library for the entity-python-sdk API"
 dynamic = ["readme"]
 license = "MIT"
 authors = [

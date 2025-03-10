@@ -88,10 +88,10 @@ class EntityPythonSDK(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous EntityPythonSDK client instance.
 
-        This automatically infers the `bearer_token` argument from the `ENTITY_PYTHON_SDK_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `HUBMAP_GLOBUS_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("ENTITY_PYTHON_SDK_BEARER_TOKEN")
+            bearer_token = os.environ.get("HUBMAP_GLOBUS_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         if base_url is None:
@@ -270,10 +270,10 @@ class AsyncEntityPythonSDK(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncEntityPythonSDK client instance.
 
-        This automatically infers the `bearer_token` argument from the `ENTITY_PYTHON_SDK_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `HUBMAP_GLOBUS_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("ENTITY_PYTHON_SDK_BEARER_TOKEN")
+            bearer_token = os.environ.get("HUBMAP_GLOBUS_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         if base_url is None:

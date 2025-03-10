@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, TypedDict
 
+from .donor_param import DonorParam
 from .person_param import PersonParam
 
 __all__ = ["SampleParam", "Metadata"]
@@ -105,6 +106,8 @@ class SampleParam(TypedDict, total=False):
 
     description: str
     """Free text description of the sample"""
+
+    direct_ancestor: DonorParam
 
     direct_ancestor_uuid: str
     """The uuid of source entity from which this new entity is derived from.

@@ -10,14 +10,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.entity-python-sdk.com](https://docs.entity-python-sdk.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.hubmapconsortium.org](https://docs.hubmapconsortium.org/). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from PyPI
-pip install entity_python_sdk
+# install from the production repo
+pip install git+ssh://git@github.com/hubmapconsortium/entity-python-sdk.git
 ```
+
+> [!NOTE]
+> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install entity_python_sdk`
 
 ## Usage
 
@@ -29,18 +32,18 @@ from entity_python_sdk import EntityPythonSDK
 
 client = EntityPythonSDK(
     bearer_token=os.environ.get(
-        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
+        "HUBMAP_GLOBUS_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
-entity = client.entities.retrieve1(
-    "REPLACE_ME",
+entity = client.entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
 While you can provide a `bearer_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `ENTITY_PYTHON_SDK_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+to add `HUBMAP_GLOBUS_BEARER_TOKEN="My Bearer Token"` to your `.env` file
 so that your Bearer Token is not stored in source control.
 
 ## Async usage
@@ -54,14 +57,14 @@ from entity_python_sdk import AsyncEntityPythonSDK
 
 client = AsyncEntityPythonSDK(
     bearer_token=os.environ.get(
-        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
+        "HUBMAP_GLOBUS_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
 
 async def main() -> None:
-    entity = await client.entities.retrieve1(
-        "REPLACE_ME",
+    entity = await client.entities.retrieve(
+        "uuid or hubmap_id",
     )
 
 
@@ -95,8 +98,8 @@ from entity_python_sdk import EntityPythonSDK
 client = EntityPythonSDK()
 
 try:
-    client.entities.retrieve1(
-        "REPLACE_ME",
+    client.entities.retrieve(
+        "uuid or hubmap_id",
     )
 except entity_python_sdk.APIConnectionError as e:
     print("The server could not be reached")
@@ -140,14 +143,14 @@ client = EntityPythonSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).entities.retrieve1(
-    "REPLACE_ME",
+client.with_options(max_retries=5).entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
 ### Timeouts
 
-By default requests time out after 1 minute. You can configure this with a `timeout` option,
+By default requests time out after 29 seconds. You can configure this with a `timeout` option,
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
@@ -155,7 +158,7 @@ from entity_python_sdk import EntityPythonSDK
 
 # Configure the default for all requests:
 client = EntityPythonSDK(
-    # 20 seconds (default is 1 minute)
+    # 20 seconds (default is 29 seconds)
     timeout=20.0,
 )
 
@@ -165,8 +168,8 @@ client = EntityPythonSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).entities.retrieve1(
-    "REPLACE_ME",
+client.with_options(timeout=5.0).entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
@@ -208,12 +211,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from entity_python_sdk import EntityPythonSDK
 
 client = EntityPythonSDK()
-response = client.entities.with_raw_response.retrieve1(
-    "REPLACE_ME",
+response = client.entities.with_raw_response.retrieve(
+    "uuid or hubmap_id",
 )
 print(response.headers.get('X-My-Header'))
 
-entity = response.parse()  # get the object that `entities.retrieve1()` would have returned
+entity = response.parse()  # get the object that `entities.retrieve()` would have returned
 print(entity)
 ```
 
@@ -228,8 +231,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.entities.with_streaming_response.retrieve1(
-    "REPLACE_ME",
+with client.entities.with_streaming_response.retrieve(
+    "uuid or hubmap_id",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
