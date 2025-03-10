@@ -6,65 +6,15 @@ from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from .file import File
-from .donor import Donor
 from .person import Person
 from .sample import Sample
-from .upload import Upload
-from .dataset import Dataset
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
-from .collection import Collection
 
-__all__ = [
-    "EntityRetrieveResponse",
-    "EntitiesDonor",
-    "EntitiesSample",
-    "DatasetsDataset",
-    "UploadsUpload",
-    "EntitiesCollection",
-    "UnionMember5",
-    "UnionMember5Antibody",
-    "UnionMember5DirectAncestor",
-    "UnionMember6",
-]
+__all__ = ["Publication", "Antibody", "DirectAncestor"]
 
 
-class EntitiesDonor(Donor):
-    entity_type: Optional[
-        Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    ] = None  # type: ignore
-    """the type of entity"""
-
-
-class EntitiesSample(Sample):
-    entity_type: Optional[
-        Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    ] = None  # type: ignore
-    """the type of entity"""
-
-
-class DatasetsDataset(Dataset):
-    entity_type: Optional[
-        Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    ] = None  # type: ignore
-    """the type of entity"""
-
-
-class UploadsUpload(Upload):
-    entity_type: Optional[
-        Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    ] = None  # type: ignore
-    """the type of entity"""
-
-
-class EntitiesCollection(Collection):
-    entity_type: Optional[
-        Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    ] = None  # type: ignore
-    """the type of entity"""
-
-
-class UnionMember5Antibody(BaseModel):
+class Antibody(BaseModel):
     antibody_name: Optional[str] = None
     """The name of the antibody."""
 
@@ -104,14 +54,14 @@ class UnionMember5Antibody(BaseModel):
     """
 
 
-UnionMember5DirectAncestor: TypeAlias = Union[Sample, "Dataset"]
+DirectAncestor: TypeAlias = Union[Sample, "Dataset"]
 
 
-class UnionMember5(BaseModel):
-    entity_type: Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
+class Publication(BaseModel):
+    entity_type: str
     """One of the normalized entity types: Dataset, Collection, Sample, Donor"""
 
-    antibodies: Optional[List[UnionMember5Antibody]] = None
+    antibodies: Optional[List[Antibody]] = None
     """A list of antibodies used in the assay that created the dataset"""
 
     associated_collection: Optional[object] = None
@@ -235,7 +185,7 @@ class UnionMember5(BaseModel):
     description: Optional[str] = None
     """Free text description of the dataset"""
 
-    direct_ancestors: Optional[List[UnionMember5DirectAncestor]] = None
+    direct_ancestors: Optional[List[DirectAncestor]] = None
     """
     A list of direct parent ancensters (one level above) that the Dataset was
     derived from.
@@ -410,113 +360,13 @@ class UnionMember5(BaseModel):
     """The volume number of a journal that it was published in."""
 
 
-class UnionMember6(BaseModel):
-    entity_type: Literal["Donor", "Sample", "Dataset", "Upload", "Collection", "Publication", "Epicollection"]
-    """One of the normalized entity types: Dataset, Collection, Sample, Donor"""
-
-    contacts: Optional[List[Person]] = None
-    """
-    A list of the people who are the main contacts to get information about the
-    entity.
-    """
-
-    contributors: Optional[List[Person]] = None
-    """
-    A list of the people who created the entity with full name, email, ORCID iD,
-    institution, etc.. This is analogus to the author list on a publication.
-    """
-
-    created_by_user_displayname: Optional[str] = None
-    """The name of the person or process authenticated when creating the object"""
-
-    created_by_user_email: Optional[str] = None
-    """
-    The email address of the person or process authenticated when creating the
-    object.
-    """
-
-    created_by_user_sub: Optional[str] = None
-    """
-    The subject id as provided by the authorization mechanism for the person or
-    process authenticated when creating the object.
-    """
-
-    created_timestamp: Optional[int] = None
-    """The timestamp of when the node was created.
-
-    The format is an integer representing milliseconds since midnight Jan 1, 1970
-    """
-
-    datasets: Optional[List["Dataset"]] = None
-    """The datasets that are contained in the Collection."""
-
-    doi_url: Optional[str] = None
-    """The url from the doi registry for this entity.
-
-    e.g. https://doi.org/10.35079/hbm289.pcbm.487
-    """
-
-    hubmap_id: Optional[str] = None
-    """
-    A HuBMAP Consortium wide unique identifier randomly generated in the format
-    HBM###.ABCD.### for every entity.
-    """
-
-    last_modified_timestamp: Optional[int] = None
-    """The timestamp of when the object was last modified.
-
-    The format is an integer representing milliseconds since midnight, Jan 1, 1970
-    """
-
-    last_modified_user_displayname: Optional[str] = None
-    """
-    The name of the person or process which authenticated when the object was last
-    modified.
-    """
-
-    last_modified_user_email: Optional[str] = None
-    """
-    The email address of the person or process which authenticated when the object
-    was last modified.
-    """
-
-    last_modified_user_sub: Optional[str] = None
-    """
-    The subject id of the user who last modified the entity as provided by the
-    authorization mechanism for the person or process authenticated when the object
-    was modified.
-    """
-
-    registered_doi: Optional[str] = None
-    """The doi of a the registered entity.
-
-    e.g. 10.35079/hbm289.pcbm.487. This is set during the publication process and
-    currently available for certain Collections and Datasets.
-    """
-
-    title: Optional[str] = None
-    """The title of the Collection"""
-
-    uuid: Optional[str] = None
-    """The HuBMAP unique identifier, intended for internal software use only.
-
-    This is a 32 digit hexadecimal uuid e.g. 461bbfdc353a2673e381f632510b0f17
-    """
-
-
-EntityRetrieveResponse: TypeAlias = Union[
-    EntitiesDonor, EntitiesSample, DatasetsDataset, UploadsUpload, EntitiesCollection, UnionMember5, UnionMember6
-]
-
 from .upload import Upload
 from .dataset import Dataset
 from .collection import Collection
 
 if PYDANTIC_V2:
-    UnionMember5.model_rebuild()
-    UnionMember5Antibody.model_rebuild()
-    UnionMember6.model_rebuild()
+    Publication.model_rebuild()
+    Antibody.model_rebuild()
 else:
-    UnionMember5.update_forward_refs()  # type: ignore
-    UnionMember5Antibody.update_forward_refs()  # type: ignore
-    UnionMember6.update_forward_refs()  # type: ignore
+    Publication.update_forward_refs()  # type: ignore
+    Antibody.update_forward_refs()  # type: ignore
