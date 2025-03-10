@@ -508,6 +508,329 @@ class EntitiesResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def update(
+        self,
+        id: str,
+        *,
+        dataset_uuids_to_link: List[str] | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_unlink: List[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        group_uuid: str | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        validation_message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          dataset_uuids_to_link: List of datasets to add to the Upload. Provide as a json array of the dataset
+              uuids like: ["232934234234234234234270c0ea6c51d604a850558ef2247d0b4",
+              "230948203482234234234a57bfe9c056d08a0f8e6cd612baa3bfa"]
+
+          dataset_uuids_to_unlink: List of datasets to remove from a Upload. Provide as a json array of the dataset
+              uuids like: ["232934234234234234234270c0ea6c51d604a850558ef2247d0b4",
+              "230948203482234234234a57bfe9c056d08a0f8e6cd612baa3bfa"]
+
+          description: Free text description of the data being submitted.
+
+          group_uuid: The uuid of globus group which the user who created this entity is a member of.
+              This is required on Create/POST if the user creating the Donor is a member of
+              more than one write group. This property cannot be set via PUT (only on
+              Create/POST).
+
+          status: One of: New|Valid|Invalid|Error|Submitted
+
+          title: Title of the datasets, a sentance or less
+
+          validation_message: A message from the validataion tools describing what is invalid with the upload.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        id: str,
+        *,
+        antibodies: Iterable[entity_update_params.PublicationAntibody] | NotGiven = NOT_GIVEN,
+        associated_collection: object | NotGiven = NOT_GIVEN,
+        associated_collection_uuid: str | NotGiven = NOT_GIVEN,
+        calculated_metadata: object | NotGiven = NOT_GIVEN,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contains_human_genetic_sequences: bool | NotGiven = NOT_GIVEN,
+        creators: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        data_types: List[
+            Literal[
+                "AF",
+                "ATACseq-bulk",
+                "bulk_atacseq",
+                "cell-dive",
+                "CODEX",
+                "codex_cytokit",
+                "DART-FISH",
+                "image_pyramid",
+                "IMC",
+                "3D-IMC",
+                "lc-ms_label-free",
+                "lc-ms_labeled",
+                "lc-ms-ms_label-free",
+                "lc-ms-ms_labeled",
+                "LC-MS-untargeted",
+                "Lightsheet",
+                "MALDI-IMS-neg",
+                "MALDI-IMS-pos",
+                "MxIF",
+                "PAS",
+                "bulk-RNA",
+                "salmon_rnaseq_bulk",
+                "SNAREseq",
+                "sc_atac_seq_snare_lab",
+                "sc_atac_seq_snare",
+                "scRNA-Seq-10x",
+                "salmon_rnaseq_10x",
+                "sc_rna_seq_snare_lab",
+                "salmon_rnaseq_snareseq",
+                "sciATACseq",
+                "sc_atac_seq_sci",
+                "sciRNAseq",
+                "salmon_rnaseq_sciseq",
+                "seqFish",
+                "seqFish_lab_processed",
+                "snATACseq",
+                "sn_atac_seq",
+                "snRNAseq",
+                "salmon_sn_rnaseq_10x",
+                "Slide-seq",
+                "Targeted-Shotgun-LC-MS",
+                "TMT-LC-MS",
+                "WGS",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        dbgap_sra_experiment_url: str | NotGiven = NOT_GIVEN,
+        dbgap_study_url: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        error_message: str | NotGiven = NOT_GIVEN,
+        files: Iterable[FileParam] | NotGiven = NOT_GIVEN,
+        group_uuid: str | NotGiven = NOT_GIVEN,
+        ingest_metadata: object | NotGiven = NOT_GIVEN,
+        issue: int | NotGiven = NOT_GIVEN,
+        metadata: object | NotGiven = NOT_GIVEN,
+        omap_doi: str | NotGiven = NOT_GIVEN,
+        pages_or_article_num: str | NotGiven = NOT_GIVEN,
+        previous_revision_uuid: str | NotGiven = NOT_GIVEN,
+        publication_date: str | NotGiven = NOT_GIVEN,
+        publication_doi: str | NotGiven = NOT_GIVEN,
+        publication_url: str | NotGiven = NOT_GIVEN,
+        publication_venue: str | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        retraction_reason: str | NotGiven = NOT_GIVEN,
+        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"] | NotGiven = NOT_GIVEN,
+        sub_status: str | NotGiven = NOT_GIVEN,
+        thumbnail_file_to_add: str | NotGiven = NOT_GIVEN,
+        thumbnail_file_to_remove: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        volume: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          antibodies: A list of antibodies used in the assay that created the dataset
+
+          associated_collection: The associated collection for a given publication
+
+          associated_collection_uuid: The uuid of the associated collection for a given publication.
+
+          calculated_metadata: Calculated metadata outputted from the processing pipeline.
+
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contains_human_genetic_sequences: True if the data contains any human genetic sequence information. Can only be
+              set at CREATE/POST time
+
+          creators: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          data_types: The data or assay types contained in this dataset as a json array of strings.
+              Each is an assay code from
+              [assay types](https://github.com/hubmapconsortium/search-api/blob/main/src/search-schema/data/definitions/enums/assay_types.yaml).
+
+          dbgap_sra_experiment_url: A URL linking the dataset to the associated uploaded data at dbGaP.
+
+          dbgap_study_url: A URL linking the dataset to the particular study on dbGap it belongs to
+
+          description: Free text description of the dataset
+
+          error_message: An open text field that holds the last error message that arose from pipeline
+              validation or analysis.
+
+          files: A list of files associated with the dataset.
+
+          group_uuid: The uuid of globus group which the user who created this entity is a member of.
+              This is required on Create/POST if the user creating the Donor is a member of
+              more than one write group. This property cannot be set via PUT (only on
+              Create/POST).
+
+          ingest_metadata: Information associated with running the ingest and processing pipelines.
+
+          issue: The issue number of the journal that it was published in.
+
+          metadata: Metadata associated with the ingested experimental data.
+
+          omap_doi: A DOI pointing to an Organ Mapping Antibody Panel relevant to this publication
+
+          pages_or_article_num: The pages or the article number in the publication journal e.g., “23”, “23-49”,
+              “e1003424”.
+
+          previous_revision_uuid: The uuid of previous revision dataset. Can only be set at Create/POST time.
+
+          publication_date: The date of publication
+
+          publication_doi: The doi of the publication. (##.####/[alpha-numeric-string])
+
+          publication_url: he URL at the publishers server for print/pre-print
+              (http(s)://[alpha-numeric-string].[alpha-numeric-string].[...])
+
+          publication_venue: The venue of the publication, journal, conference, preprint server, etc...
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          retraction_reason: Information recorded about why a the dataset was retracted.
+
+          status: One of: New|Processing|QA|Published|Error|Hold|Invalid
+
+          sub_status: A sub-status provided to further define the status. The only current allowable
+              value is "Retracted"
+
+          thumbnail_file_to_add: Just a temporary file id. Provide as a json object with an temp_file_id like
+              {"temp_file_id":"dzevgd6xjs4d5grmcp4n"}
+
+          thumbnail_file_to_remove: The thumbnail image file previously uploaded to delete. Provide as a string of
+              the file_uuid like: "c35002f9c3d49f8b77e1e2cd4a01803d"
+
+          title: The Publication title.
+
+          volume: The volume number of a journal that it was published in.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        id: str,
+        *,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contributors: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          title: The title of the Collection
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        id: str,
+        *,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contributors: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          title: The title of the Collection
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     def update(
         self,
         id: str,
@@ -636,11 +959,27 @@ class EntitiesResource(SyncAPIResource):
         previous_revision_uuid: str | NotGiven = NOT_GIVEN,
         previous_revision_uuids: List[str] | NotGiven = NOT_GIVEN,
         retraction_reason: str | NotGiven = NOT_GIVEN,
-        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"] | NotGiven = NOT_GIVEN,
+        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"]
+        | str
+        | NotGiven = NOT_GIVEN,
         sub_status: str | NotGiven = NOT_GIVEN,
         thumbnail_file_to_add: str | NotGiven = NOT_GIVEN,
         thumbnail_file_to_remove: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_link: List[str] | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_unlink: List[str] | NotGiven = NOT_GIVEN,
+        validation_message: str | NotGiven = NOT_GIVEN,
+        associated_collection: object | NotGiven = NOT_GIVEN,
+        associated_collection_uuid: str | NotGiven = NOT_GIVEN,
+        issue: int | NotGiven = NOT_GIVEN,
+        omap_doi: str | NotGiven = NOT_GIVEN,
+        pages_or_article_num: str | NotGiven = NOT_GIVEN,
+        publication_date: str | NotGiven = NOT_GIVEN,
+        publication_doi: str | NotGiven = NOT_GIVEN,
+        publication_url: str | NotGiven = NOT_GIVEN,
+        publication_venue: str | NotGiven = NOT_GIVEN,
+        volume: int | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -698,6 +1037,20 @@ class EntitiesResource(SyncAPIResource):
                     "thumbnail_file_to_add": thumbnail_file_to_add,
                     "thumbnail_file_to_remove": thumbnail_file_to_remove,
                     "title": title,
+                    "dataset_uuids_to_link": dataset_uuids_to_link,
+                    "dataset_uuids_to_unlink": dataset_uuids_to_unlink,
+                    "validation_message": validation_message,
+                    "associated_collection": associated_collection,
+                    "associated_collection_uuid": associated_collection_uuid,
+                    "issue": issue,
+                    "omap_doi": omap_doi,
+                    "pages_or_article_num": pages_or_article_num,
+                    "publication_date": publication_date,
+                    "publication_doi": publication_doi,
+                    "publication_url": publication_url,
+                    "publication_venue": publication_venue,
+                    "volume": volume,
+                    "contributors": contributors,
                 },
                 entity_update_params.EntityUpdateParams,
             ),
@@ -1544,6 +1897,329 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def update(
+        self,
+        id: str,
+        *,
+        dataset_uuids_to_link: List[str] | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_unlink: List[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        group_uuid: str | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        validation_message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          dataset_uuids_to_link: List of datasets to add to the Upload. Provide as a json array of the dataset
+              uuids like: ["232934234234234234234270c0ea6c51d604a850558ef2247d0b4",
+              "230948203482234234234a57bfe9c056d08a0f8e6cd612baa3bfa"]
+
+          dataset_uuids_to_unlink: List of datasets to remove from a Upload. Provide as a json array of the dataset
+              uuids like: ["232934234234234234234270c0ea6c51d604a850558ef2247d0b4",
+              "230948203482234234234a57bfe9c056d08a0f8e6cd612baa3bfa"]
+
+          description: Free text description of the data being submitted.
+
+          group_uuid: The uuid of globus group which the user who created this entity is a member of.
+              This is required on Create/POST if the user creating the Donor is a member of
+              more than one write group. This property cannot be set via PUT (only on
+              Create/POST).
+
+          status: One of: New|Valid|Invalid|Error|Submitted
+
+          title: Title of the datasets, a sentance or less
+
+          validation_message: A message from the validataion tools describing what is invalid with the upload.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        id: str,
+        *,
+        antibodies: Iterable[entity_update_params.PublicationAntibody] | NotGiven = NOT_GIVEN,
+        associated_collection: object | NotGiven = NOT_GIVEN,
+        associated_collection_uuid: str | NotGiven = NOT_GIVEN,
+        calculated_metadata: object | NotGiven = NOT_GIVEN,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contains_human_genetic_sequences: bool | NotGiven = NOT_GIVEN,
+        creators: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        data_types: List[
+            Literal[
+                "AF",
+                "ATACseq-bulk",
+                "bulk_atacseq",
+                "cell-dive",
+                "CODEX",
+                "codex_cytokit",
+                "DART-FISH",
+                "image_pyramid",
+                "IMC",
+                "3D-IMC",
+                "lc-ms_label-free",
+                "lc-ms_labeled",
+                "lc-ms-ms_label-free",
+                "lc-ms-ms_labeled",
+                "LC-MS-untargeted",
+                "Lightsheet",
+                "MALDI-IMS-neg",
+                "MALDI-IMS-pos",
+                "MxIF",
+                "PAS",
+                "bulk-RNA",
+                "salmon_rnaseq_bulk",
+                "SNAREseq",
+                "sc_atac_seq_snare_lab",
+                "sc_atac_seq_snare",
+                "scRNA-Seq-10x",
+                "salmon_rnaseq_10x",
+                "sc_rna_seq_snare_lab",
+                "salmon_rnaseq_snareseq",
+                "sciATACseq",
+                "sc_atac_seq_sci",
+                "sciRNAseq",
+                "salmon_rnaseq_sciseq",
+                "seqFish",
+                "seqFish_lab_processed",
+                "snATACseq",
+                "sn_atac_seq",
+                "snRNAseq",
+                "salmon_sn_rnaseq_10x",
+                "Slide-seq",
+                "Targeted-Shotgun-LC-MS",
+                "TMT-LC-MS",
+                "WGS",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        dbgap_sra_experiment_url: str | NotGiven = NOT_GIVEN,
+        dbgap_study_url: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        error_message: str | NotGiven = NOT_GIVEN,
+        files: Iterable[FileParam] | NotGiven = NOT_GIVEN,
+        group_uuid: str | NotGiven = NOT_GIVEN,
+        ingest_metadata: object | NotGiven = NOT_GIVEN,
+        issue: int | NotGiven = NOT_GIVEN,
+        metadata: object | NotGiven = NOT_GIVEN,
+        omap_doi: str | NotGiven = NOT_GIVEN,
+        pages_or_article_num: str | NotGiven = NOT_GIVEN,
+        previous_revision_uuid: str | NotGiven = NOT_GIVEN,
+        publication_date: str | NotGiven = NOT_GIVEN,
+        publication_doi: str | NotGiven = NOT_GIVEN,
+        publication_url: str | NotGiven = NOT_GIVEN,
+        publication_venue: str | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        retraction_reason: str | NotGiven = NOT_GIVEN,
+        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"] | NotGiven = NOT_GIVEN,
+        sub_status: str | NotGiven = NOT_GIVEN,
+        thumbnail_file_to_add: str | NotGiven = NOT_GIVEN,
+        thumbnail_file_to_remove: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        volume: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          antibodies: A list of antibodies used in the assay that created the dataset
+
+          associated_collection: The associated collection for a given publication
+
+          associated_collection_uuid: The uuid of the associated collection for a given publication.
+
+          calculated_metadata: Calculated metadata outputted from the processing pipeline.
+
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contains_human_genetic_sequences: True if the data contains any human genetic sequence information. Can only be
+              set at CREATE/POST time
+
+          creators: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          data_types: The data or assay types contained in this dataset as a json array of strings.
+              Each is an assay code from
+              [assay types](https://github.com/hubmapconsortium/search-api/blob/main/src/search-schema/data/definitions/enums/assay_types.yaml).
+
+          dbgap_sra_experiment_url: A URL linking the dataset to the associated uploaded data at dbGaP.
+
+          dbgap_study_url: A URL linking the dataset to the particular study on dbGap it belongs to
+
+          description: Free text description of the dataset
+
+          error_message: An open text field that holds the last error message that arose from pipeline
+              validation or analysis.
+
+          files: A list of files associated with the dataset.
+
+          group_uuid: The uuid of globus group which the user who created this entity is a member of.
+              This is required on Create/POST if the user creating the Donor is a member of
+              more than one write group. This property cannot be set via PUT (only on
+              Create/POST).
+
+          ingest_metadata: Information associated with running the ingest and processing pipelines.
+
+          issue: The issue number of the journal that it was published in.
+
+          metadata: Metadata associated with the ingested experimental data.
+
+          omap_doi: A DOI pointing to an Organ Mapping Antibody Panel relevant to this publication
+
+          pages_or_article_num: The pages or the article number in the publication journal e.g., “23”, “23-49”,
+              “e1003424”.
+
+          previous_revision_uuid: The uuid of previous revision dataset. Can only be set at Create/POST time.
+
+          publication_date: The date of publication
+
+          publication_doi: The doi of the publication. (##.####/[alpha-numeric-string])
+
+          publication_url: he URL at the publishers server for print/pre-print
+              (http(s)://[alpha-numeric-string].[alpha-numeric-string].[...])
+
+          publication_venue: The venue of the publication, journal, conference, preprint server, etc...
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          retraction_reason: Information recorded about why a the dataset was retracted.
+
+          status: One of: New|Processing|QA|Published|Error|Hold|Invalid
+
+          sub_status: A sub-status provided to further define the status. The only current allowable
+              value is "Retracted"
+
+          thumbnail_file_to_add: Just a temporary file id. Provide as a json object with an temp_file_id like
+              {"temp_file_id":"dzevgd6xjs4d5grmcp4n"}
+
+          thumbnail_file_to_remove: The thumbnail image file previously uploaded to delete. Provide as a string of
+              the file_uuid like: "c35002f9c3d49f8b77e1e2cd4a01803d"
+
+          title: The Publication title.
+
+          volume: The volume number of a journal that it was published in.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        id: str,
+        *,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contributors: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          title: The title of the Collection
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        id: str,
+        *,
+        contacts: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
+        registered_doi: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Update the properties of a given Donor, Sample, Dataset or Upload
+
+        Args:
+          contacts: A list of the people who are the main contacts to get information about the
+              entity.
+
+          contributors: A list of the people who created the entity with full name, email, ORCID iD,
+              institution, etc.. This is analogus to the author list on a publication.
+
+          registered_doi: The doi of a the registered entity. e.g. 10.35079/hbm289.pcbm.487. This is set
+              during the publication process and currently available for certain Collections
+              and Datasets.
+
+          title: The title of the Collection
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     async def update(
         self,
         id: str,
@@ -1672,11 +2348,27 @@ class AsyncEntitiesResource(AsyncAPIResource):
         previous_revision_uuid: str | NotGiven = NOT_GIVEN,
         previous_revision_uuids: List[str] | NotGiven = NOT_GIVEN,
         retraction_reason: str | NotGiven = NOT_GIVEN,
-        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"] | NotGiven = NOT_GIVEN,
+        status: Literal["New", "Processing", "QA", "Published", "Error", "Hold", "Invalid"]
+        | str
+        | NotGiven = NOT_GIVEN,
         sub_status: str | NotGiven = NOT_GIVEN,
         thumbnail_file_to_add: str | NotGiven = NOT_GIVEN,
         thumbnail_file_to_remove: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_link: List[str] | NotGiven = NOT_GIVEN,
+        dataset_uuids_to_unlink: List[str] | NotGiven = NOT_GIVEN,
+        validation_message: str | NotGiven = NOT_GIVEN,
+        associated_collection: object | NotGiven = NOT_GIVEN,
+        associated_collection_uuid: str | NotGiven = NOT_GIVEN,
+        issue: int | NotGiven = NOT_GIVEN,
+        omap_doi: str | NotGiven = NOT_GIVEN,
+        pages_or_article_num: str | NotGiven = NOT_GIVEN,
+        publication_date: str | NotGiven = NOT_GIVEN,
+        publication_doi: str | NotGiven = NOT_GIVEN,
+        publication_url: str | NotGiven = NOT_GIVEN,
+        publication_venue: str | NotGiven = NOT_GIVEN,
+        volume: int | NotGiven = NOT_GIVEN,
+        contributors: Iterable[PersonParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1734,6 +2426,20 @@ class AsyncEntitiesResource(AsyncAPIResource):
                     "thumbnail_file_to_add": thumbnail_file_to_add,
                     "thumbnail_file_to_remove": thumbnail_file_to_remove,
                     "title": title,
+                    "dataset_uuids_to_link": dataset_uuids_to_link,
+                    "dataset_uuids_to_unlink": dataset_uuids_to_unlink,
+                    "validation_message": validation_message,
+                    "associated_collection": associated_collection,
+                    "associated_collection_uuid": associated_collection_uuid,
+                    "issue": issue,
+                    "omap_doi": omap_doi,
+                    "pages_or_article_num": pages_or_article_num,
+                    "publication_date": publication_date,
+                    "publication_doi": publication_doi,
+                    "publication_url": publication_url,
+                    "publication_venue": publication_venue,
+                    "volume": volume,
+                    "contributors": contributors,
                 },
                 entity_update_params.EntityUpdateParams,
             ),
