@@ -134,7 +134,7 @@ class TestDatasets:
                     "status": "New",
                     "sub_status": "sub_status",
                     "thumbnail_file_to_add": "thumbnail_file_to_add",
-                    "thumbnail_file_to_remove": "thumbnail_file_to_remove",
+                    "thumbnail_file_to_remove": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "title": "title",
                     "dataset_link_abs_dir": "dataset_link_abs_dir",
                 }
@@ -799,7 +799,7 @@ class TestAsyncDatasets:
                     "status": "New",
                     "sub_status": "sub_status",
                     "thumbnail_file_to_add": "thumbnail_file_to_add",
-                    "thumbnail_file_to_remove": "thumbnail_file_to_remove",
+                    "thumbnail_file_to_remove": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "title": "title",
                     "dataset_link_abs_dir": "dataset_link_abs_dir",
                 }

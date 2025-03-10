@@ -22,11 +22,8 @@ from .epicollection import Epicollection as Epicollection
 from .donor_metadata import DonorMetadata as DonorMetadata
 from .collection_param import CollectionParam as CollectionParam
 from .donor_metadata_param import DonorMetadataParam as DonorMetadataParam
-from .entity_create_params import EntityCreateParams as EntityCreateParams
 from .entity_update_params import EntityUpdateParams as EntityUpdateParams
 from .dataset_retract_params import DatasetRetractParams as DatasetRetractParams
-from .entity_create_response import EntityCreateResponse as EntityCreateResponse
-from .entity_update_response import EntityUpdateResponse as EntityUpdateResponse
 from .child_retrieve_response import ChildRetrieveResponse as ChildRetrieveResponse
 from .parent_retrieve_response import ParentRetrieveResponse as ParentRetrieveResponse
 from .upload_update_bulk_params import UploadUpdateBulkParams as UploadUpdateBulkParams
