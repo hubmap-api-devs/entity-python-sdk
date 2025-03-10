@@ -10,13 +10,13 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.entity-python-sdk.com](https://docs.entity-python-sdk.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.hubmapconsortium.org](https://docs.hubmapconsortium.org/). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
 # install from the production repo
-pip install git+ssh://git@github.com/hubmap-api-devs/entity-python-sdk.git
+pip install git+ssh://git@github.com/hubmapconsortium/entity-python-sdk.git
 ```
 
 > [!NOTE]
@@ -32,18 +32,18 @@ from entity_python_sdk import EntityPythonSDK
 
 client = EntityPythonSDK(
     bearer_token=os.environ.get(
-        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
+        "HUBMAP_GLOBUS_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
-entity = client.entities.retrieve2(
-    "REPLACE_ME",
+entity = client.entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
 While you can provide a `bearer_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `ENTITY_PYTHON_SDK_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+to add `HUBMAP_GLOBUS_BEARER_TOKEN="My Bearer Token"` to your `.env` file
 so that your Bearer Token is not stored in source control.
 
 ## Async usage
@@ -57,14 +57,14 @@ from entity_python_sdk import AsyncEntityPythonSDK
 
 client = AsyncEntityPythonSDK(
     bearer_token=os.environ.get(
-        "ENTITY_PYTHON_SDK_BEARER_TOKEN"
+        "HUBMAP_GLOBUS_BEARER_TOKEN"
     ),  # This is the default and can be omitted
 )
 
 
 async def main() -> None:
-    entity = await client.entities.retrieve2(
-        "REPLACE_ME",
+    entity = await client.entities.retrieve(
+        "uuid or hubmap_id",
     )
 
 
@@ -98,8 +98,8 @@ from entity_python_sdk import EntityPythonSDK
 client = EntityPythonSDK()
 
 try:
-    client.entities.retrieve2(
-        "REPLACE_ME",
+    client.entities.retrieve(
+        "uuid or hubmap_id",
     )
 except entity_python_sdk.APIConnectionError as e:
     print("The server could not be reached")
@@ -143,8 +143,8 @@ client = EntityPythonSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).entities.retrieve2(
-    "REPLACE_ME",
+client.with_options(max_retries=5).entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
@@ -168,8 +168,8 @@ client = EntityPythonSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).entities.retrieve2(
-    "REPLACE_ME",
+client.with_options(timeout=5.0).entities.retrieve(
+    "uuid or hubmap_id",
 )
 ```
 
@@ -211,18 +211,18 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from entity_python_sdk import EntityPythonSDK
 
 client = EntityPythonSDK()
-response = client.entities.with_raw_response.retrieve2(
-    "REPLACE_ME",
+response = client.entities.with_raw_response.retrieve(
+    "uuid or hubmap_id",
 )
 print(response.headers.get('X-My-Header'))
 
-entity = response.parse()  # get the object that `entities.retrieve2()` would have returned
+entity = response.parse()  # get the object that `entities.retrieve()` would have returned
 print(entity)
 ```
 
-These methods return an [`APIResponse`](https://github.com/hubmap-api-devs/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/hubmapconsortium/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/hubmap-api-devs/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/hubmapconsortium/entity-python-sdk/tree/main/src/entity_python_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -231,8 +231,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.entities.with_streaming_response.retrieve2(
-    "REPLACE_ME",
+with client.entities.with_streaming_response.retrieve(
+    "uuid or hubmap_id",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -328,7 +328,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/hubmap-api-devs/entity-python-sdk/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/hubmapconsortium/entity-python-sdk/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 

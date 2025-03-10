@@ -345,7 +345,7 @@ class TestEntityPythonSDK:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == bearer_token
 
-        with update_env(**{"ENTITY_PYTHON_SDK_BEARER_TOKEN": Omit()}):
+        with update_env(**{"HUBMAP_GLOBUS_BEARER_TOKEN": Omit()}):
             client2 = EntityPythonSDK(base_url=base_url, bearer_token=None, _strict_response_validation=True)
 
         client2._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -787,7 +787,7 @@ class TestEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = client.entities.with_raw_response.retrieve2("id")
+        response = client.entities.with_raw_response.retrieve("id")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -811,7 +811,7 @@ class TestEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = client.entities.with_raw_response.retrieve2("id", extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.entities.with_raw_response.retrieve("id", extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -834,7 +834,7 @@ class TestEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = client.entities.with_raw_response.retrieve2("id", extra_headers={"x-stainless-retry-count": "42"})
+        response = client.entities.with_raw_response.retrieve("id", extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1129,7 +1129,7 @@ class TestAsyncEntityPythonSDK:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == bearer_token
 
-        with update_env(**{"ENTITY_PYTHON_SDK_BEARER_TOKEN": Omit()}):
+        with update_env(**{"HUBMAP_GLOBUS_BEARER_TOKEN": Omit()}):
             client2 = AsyncEntityPythonSDK(base_url=base_url, bearer_token=None, _strict_response_validation=True)
 
         client2._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1578,7 +1578,7 @@ class TestAsyncEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = await client.entities.with_raw_response.retrieve2("id")
+        response = await client.entities.with_raw_response.retrieve("id")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1603,7 +1603,7 @@ class TestAsyncEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = await client.entities.with_raw_response.retrieve2(
+        response = await client.entities.with_raw_response.retrieve(
             "id", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
@@ -1629,7 +1629,7 @@ class TestAsyncEntityPythonSDK:
 
         respx_mock.get("/entities/id").mock(side_effect=retry_handler)
 
-        response = await client.entities.with_raw_response.retrieve2(
+        response = await client.entities.with_raw_response.retrieve(
             "id", extra_headers={"x-stainless-retry-count": "42"}
         )
 
