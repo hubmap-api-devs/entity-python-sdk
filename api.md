@@ -40,17 +40,17 @@ Methods:
 
 - <code title="get /entities/type/{type_a}/instanceof/{type_b}">client.entities.type.<a href="./src/entity_python_sdk/resources/entities/type.py">is_instance_of</a>(type_b, \*, type_a) -> <a href="./src/entity_python_sdk/types/instanceof.py">Instanceof</a></code>
 
-# EntityTypes
+# SupportedEntityTypes
 
 Types:
 
 ```python
-from entity_python_sdk.types import EntityTypeListResponse
+from entity_python_sdk.types import SupportedEntityTypeListResponse
 ```
 
 Methods:
 
-- <code title="get /entity-types">client.entity_types.<a href="./src/entity_python_sdk/resources/entity_types.py">list</a>() -> <a href="./src/entity_python_sdk/types/entity_type_list_response.py">EntityTypeListResponse</a></code>
+- <code title="get /entity-types">client.supported_entity_types.<a href="./src/entity_python_sdk/resources/supported_entity_types.py">list</a>() -> <a href="./src/entity_python_sdk/types/supported_entity_type_list_response.py">SupportedEntityTypeListResponse</a></code>
 
 # Ancestors
 

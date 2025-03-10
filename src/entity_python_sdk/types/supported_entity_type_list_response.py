@@ -3,6 +3,6 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-__all__ = ["EntityTypeListResponse"]
+__all__ = ["SupportedEntityTypeListResponse"]
 
-EntityTypeListResponse: TypeAlias = List[str]
+SupportedEntityTypeListResponse: TypeAlias = List[str]
