@@ -1,8 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
 from typing_extensions import TypeAlias
 
-__all__ = ["EntityListEntityTypesResponse"]
+__all__ = ["EntityRetrieveGlobusURLResponse"]
 
-EntityListEntityTypesResponse: TypeAlias = List[str]
+EntityRetrieveGlobusURLResponse: TypeAlias = str

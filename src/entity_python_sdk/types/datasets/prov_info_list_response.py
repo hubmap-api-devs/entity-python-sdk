@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["ProvInfoListAllResponse"]
+__all__ = ["ProvInfoListResponse"]
 
 
-class ProvInfoListAllResponse(BaseModel):
+class ProvInfoListResponse(BaseModel):
     dataset_created_by_email: Optional[str] = None
     """the email address of the person who created the dataset"""
 
