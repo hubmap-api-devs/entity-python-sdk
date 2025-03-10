@@ -150,7 +150,7 @@ client.with_options(max_retries=5).entities.retrieve(
 
 ### Timeouts
 
-By default requests time out after 1 minute. You can configure this with a `timeout` option,
+By default requests time out after 29 seconds. You can configure this with a `timeout` option,
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
@@ -158,7 +158,7 @@ from entity_python_sdk import EntityPythonSDK
 
 # Configure the default for all requests:
 client = EntityPythonSDK(
-    # 20 seconds (default is 1 minute)
+    # 20 seconds (default is 29 seconds)
     timeout=20.0,
 )
 
