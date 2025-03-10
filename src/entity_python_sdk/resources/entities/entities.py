@@ -65,7 +65,7 @@ class EntitiesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmap-api-devs/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return EntitiesResourceWithRawResponse(self)
 
@@ -74,7 +74,7 @@ class EntitiesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
+        For more information, see https://www.github.com/hubmap-api-devs/entity-python-sdk#with_streaming_response
         """
         return EntitiesResourceWithStreamingResponse(self)
 
@@ -1721,7 +1721,7 @@ class EntitiesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def retrieve1(
+    def retrieve2(
         self,
         id: str,
         *,
@@ -1770,7 +1770,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/hubmap-api-devs/entity-python-sdk#accessing-raw-response-data-eg-headers
         """
         return AsyncEntitiesResourceWithRawResponse(self)
 
@@ -1779,7 +1779,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/hubmapconsortium/entity-python-sdk#with_streaming_response
+        For more information, see https://www.github.com/hubmap-api-devs/entity-python-sdk#with_streaming_response
         """
         return AsyncEntitiesResourceWithStreamingResponse(self)
 
@@ -3428,7 +3428,7 @@ class AsyncEntitiesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def retrieve1(
+    async def retrieve2(
         self,
         id: str,
         *,
@@ -3506,8 +3506,8 @@ class EntitiesResourceWithRawResponse:
         self.retrieve_provenance = to_raw_response_wrapper(
             entities.retrieve_provenance,
         )
-        self.retrieve1 = to_raw_response_wrapper(
-            entities.retrieve1,
+        self.retrieve2 = to_raw_response_wrapper(
+            entities.retrieve2,
         )
 
     @cached_property
@@ -3555,8 +3555,8 @@ class AsyncEntitiesResourceWithRawResponse:
         self.retrieve_provenance = async_to_raw_response_wrapper(
             entities.retrieve_provenance,
         )
-        self.retrieve1 = async_to_raw_response_wrapper(
-            entities.retrieve1,
+        self.retrieve2 = async_to_raw_response_wrapper(
+            entities.retrieve2,
         )
 
     @cached_property
@@ -3604,8 +3604,8 @@ class EntitiesResourceWithStreamingResponse:
         self.retrieve_provenance = to_streamed_response_wrapper(
             entities.retrieve_provenance,
         )
-        self.retrieve1 = to_streamed_response_wrapper(
-            entities.retrieve1,
+        self.retrieve2 = to_streamed_response_wrapper(
+            entities.retrieve2,
         )
 
     @cached_property
@@ -3653,8 +3653,8 @@ class AsyncEntitiesResourceWithStreamingResponse:
         self.retrieve_provenance = async_to_streamed_response_wrapper(
             entities.retrieve_provenance,
         )
-        self.retrieve1 = async_to_streamed_response_wrapper(
-            entities.retrieve1,
+        self.retrieve2 = async_to_streamed_response_wrapper(
+            entities.retrieve2,
         )
 
     @cached_property

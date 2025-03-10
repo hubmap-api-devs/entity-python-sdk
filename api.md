@@ -40,7 +40,7 @@ Methods:
 - <code title="get /entities/{id}/tuplets">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_tuplets</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_tuplets_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_tuplets_response.py">EntityListTupletsResponse</a></code>
 - <code title="get /entities/{id}/uploads">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">list_uploads</a>(id, \*\*<a href="src/entity_python_sdk/types/entity_list_uploads_params.py">params</a>) -> <a href="./src/entity_python_sdk/types/entity_list_uploads_response.py">EntityListUploadsResponse</a></code>
 - <code title="get /entities/{id}/provenance">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">retrieve_provenance</a>(id) -> None</code>
-- <code title="get /entities/{id}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">retrieve1</a>(id) -> <a href="./src/entity_python_sdk/types/entity.py">Entity</a></code>
+- <code title="get /entities/{id}">client.entities.<a href="./src/entity_python_sdk/resources/entities/entities.py">retrieve2</a>(id) -> <a href="./src/entity_python_sdk/types/entity.py">Entity</a></code>
 
 ## Type
 

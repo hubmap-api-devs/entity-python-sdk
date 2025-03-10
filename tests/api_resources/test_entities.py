@@ -1197,16 +1197,16 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve1(self, client: EntityPythonSDK) -> None:
-        entity = client.entities.retrieve1(
+    def test_method_retrieve2(self, client: EntityPythonSDK) -> None:
+        entity = client.entities.retrieve2(
             "id",
         )
         assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve1(self, client: EntityPythonSDK) -> None:
-        response = client.entities.with_raw_response.retrieve1(
+    def test_raw_response_retrieve2(self, client: EntityPythonSDK) -> None:
+        response = client.entities.with_raw_response.retrieve2(
             "id",
         )
 
@@ -1217,8 +1217,8 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve1(self, client: EntityPythonSDK) -> None:
-        with client.entities.with_streaming_response.retrieve1(
+    def test_streaming_response_retrieve2(self, client: EntityPythonSDK) -> None:
+        with client.entities.with_streaming_response.retrieve2(
             "id",
         ) as response:
             assert not response.is_closed
@@ -1231,9 +1231,9 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve1(self, client: EntityPythonSDK) -> None:
+    def test_path_params_retrieve2(self, client: EntityPythonSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.entities.with_raw_response.retrieve1(
+            client.entities.with_raw_response.retrieve2(
                 "",
             )
 
@@ -2409,16 +2409,16 @@ class TestAsyncEntities:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve1(self, async_client: AsyncEntityPythonSDK) -> None:
-        entity = await async_client.entities.retrieve1(
+    async def test_method_retrieve2(self, async_client: AsyncEntityPythonSDK) -> None:
+        entity = await async_client.entities.retrieve2(
             "id",
         )
         assert_matches_type(Entity, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve1(self, async_client: AsyncEntityPythonSDK) -> None:
-        response = await async_client.entities.with_raw_response.retrieve1(
+    async def test_raw_response_retrieve2(self, async_client: AsyncEntityPythonSDK) -> None:
+        response = await async_client.entities.with_raw_response.retrieve2(
             "id",
         )
 
@@ -2429,8 +2429,8 @@ class TestAsyncEntities:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve1(self, async_client: AsyncEntityPythonSDK) -> None:
-        async with async_client.entities.with_streaming_response.retrieve1(
+    async def test_streaming_response_retrieve2(self, async_client: AsyncEntityPythonSDK) -> None:
+        async with async_client.entities.with_streaming_response.retrieve2(
             "id",
         ) as response:
             assert not response.is_closed
@@ -2443,8 +2443,8 @@ class TestAsyncEntities:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve1(self, async_client: AsyncEntityPythonSDK) -> None:
+    async def test_path_params_retrieve2(self, async_client: AsyncEntityPythonSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.entities.with_raw_response.retrieve1(
+            await async_client.entities.with_raw_response.retrieve2(
                 "",
             )
