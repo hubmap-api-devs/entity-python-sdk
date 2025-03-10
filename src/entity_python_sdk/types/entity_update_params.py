@@ -6,6 +6,7 @@ from typing import List, Union, Iterable
 from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .file_param import FileParam
+from .donor_param import DonorParam
 from .person_param import PersonParam
 from .donor_metadata_param import DonorMetadataParam
 
@@ -111,6 +112,8 @@ class Sample(TypedDict, total=False):
 
     description: str
     """Free text description of the sample"""
+
+    direct_ancestor: DonorParam
 
     direct_ancestor_uuid: str
     """The uuid of source entity from which this new entity is derived from.

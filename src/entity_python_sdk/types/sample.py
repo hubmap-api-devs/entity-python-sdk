@@ -4,6 +4,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .file import File
+from .donor import Donor
 from .person import Person
 from .._models import BaseModel
 
@@ -130,8 +131,7 @@ class Sample(BaseModel):
     description: Optional[str] = None
     """Free text description of the sample"""
 
-    direct_ancestor: Optional[object] = None
-    """The entitiy directly above this sample in the provenance graph (direct parent)."""
+    direct_ancestor: Optional[Donor] = None
 
     doi_url: Optional[str] = None
     """The url from the doi registry for this entity.
